@@ -1,0 +1,48 @@
+<template name="gameStatsPage">
+  <div class="row">
+    <div class="col-sm-5 text-left">
+      <h5>tipo de jogo</h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-6 text-center">
+      <div class="row">
+        <div class="col-sm-8 noPadding">
+          {{>playerProfileComponent}}
+        </div>
+        <div class="col-sm-4 noPadding">
+          {{>statisticComponent}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      Target Grahp Component
+    </div>
+  </div>
+<div class="row">
+
+
+  {{#each counter}}
+    <div class="col-sm-4">
+
+
+    <div class="row">
+      <div class="col-sm-offset-2 col-sm-6 text-center">
+        <div class="row">
+          <div class="col-sm-8 noPadding">
+            {{>playerProfileComponent}}
+          </div>
+          <div class="col-sm-4 noPadding">
+            {{>statisticComponent}}
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{{/each}}
+</div>
+
+</template>

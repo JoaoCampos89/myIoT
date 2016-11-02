@@ -1,0 +1,78 @@
+<template name="gameTerminalPlayIndividualPage">
+  <div class="page-header">
+    <h3>{{_ 'PLAY_GAME'}}</h3>
+  </div>
+
+  <div class="container">
+    {{#unless game.finish}}
+    <h4>GAME: {{game._id}}</h4>
+    <h3>Jogo Ativo: {{#if game.active}} Sim{{else}} Não {{/if}}</h3>
+    <h3>Jogadores Jogando: {{#if game.playing}} Sim{{else}} Não {{/if}}</h3>
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <ul class="list-group">
+          {{#each player in game.players}}
+            <li class="list-group-item {{activePlayer player.active}}">{{playerName player.id}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      {{> startGameComponent ""}}
+    </div>
+
+      <h2>A vez do jogador {{playerName game.activePlayer.id}}</h2>
+
+
+    <div class="row">
+      <h3><b>Jogo {{game.gameType.name}}</b></h3>
+
+      <div class="col-md-6 col-md-offset-1 ">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th> Jogador</th>
+                    <th>Alvo</th>
+                    <th>Tempo</th>
+                    <th>Valor</th>
+                  </tr>
+                </thead>
+              <tbody>
+                {{#each shot in game.shots}}
+                <tr>
+                  <th>{{playerName shot.playerId}}</th>
+                  <td>{{shot.target}}</td>
+                  <td>{{shotTime shot.timestamp shot.playerId}}</td>
+                  <td>{{shot.value}}</td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+            <button type="button" class="js-remove-values btn btn-danger btn-lg">
+              Apagar
+            </button>
+      </div>
+    </div>
+    {{else}}
+      <h1>Game Terminated</h1>
+      <h2>You can go check your profile or play another round</h2>
+      <button type="button" class="btn btn-default">
+        Another Round
+      </button>
+      <a href="/"  class="btn btn-default">
+        GO Check Profile
+      </a>
+      <a href="/game-terminal/room/{{roomId}}"  class="btn btn-default">  GO Create another game in this terminal</a>
+
+    {{/unless}}
+
+
+
+
+
+
+
+  </div>
+
+
+</template>

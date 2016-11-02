@@ -1,0 +1,28 @@
+<template name="gameWaitingPlayersPage">
+  <div class="page-header">
+    <h3>{{_ 'VIEW_GAME'}}</h3>
+  </div>
+  <div class="container">
+    <p><b>Jogo:</b>{{game.name}}</p>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Escolha Jogadores:</h3>
+      </div>
+      <div class="panel-body">
+
+        <select class="js-select-players" multiple>
+          {{#each player in players}}
+            <option value="{{player._id}}">{{player.name}}</option>
+          {{/each}}
+        </select>
+        <button type="button" class="js-go-game btn btn-default">
+          Ir para Jogo
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+
+</template>

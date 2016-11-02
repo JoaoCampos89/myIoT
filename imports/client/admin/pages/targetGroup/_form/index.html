@@ -1,0 +1,21 @@
+<template name="adminTargetGroupCreateEditForm">
+
+      <div class="well well-sm">
+        <div class="well well-sm">
+            <form >
+              <div class="form-group  {{#if error 'name'}}has-error{{/if}}">
+                  <label for="name">Nome da Sala</label>
+                  <input type="text" class="form-control" name="name" id="name" value="{{model.name}}" placeholder="Insira o nome da sala">
+                    <p>  {{#if error 'name'}}{{error 'name'}}{{/if}}</p>
+              </div>
+              <button type="submit" class="btn btn-default">
+                  {{#if room}}Editar Sala{{else}} Criar Sala{{/if}}
+              </button>
+            </form>
+      </div>
+
+</div>
+
+
+
+</template>

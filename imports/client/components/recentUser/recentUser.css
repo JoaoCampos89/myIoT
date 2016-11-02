@@ -1,0 +1,94 @@
+/* New USer Registered */
+
+#user-registered {
+    background: none repeat scroll 0 0 #F4F4F4;
+    float: left;
+    margin-bottom: 30px;
+    padding: 20px;
+    width: 100%;
+}
+
+#user-registered .fancy-heading {
+    font-size: 18px;
+    line-height: 12px;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    text-align: left;
+
+}
+.user-confirm {
+    float: left;
+    width: 100%;
+}
+.user-confirm > img {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+
+    display: table;
+    float: none;
+    margin: 0 auto;
+}
+.user-confirm > h3 {
+    color: #4B4C4C;
+    float: left;
+    font-family: open sans;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 11px;
+    margin: 13px 0 20px;
+    text-align: center;
+    width: 100%;
+}
+.user-confirm > h3 i{
+	font-style:normal;
+	font-weight:600;
+}
+.user-confirm > p {
+    color: #555555;
+    float: left;
+    font-family: open sans;
+    font-size: 11px;
+    line-height: 10px;
+    margin: 0 0 15px;
+    text-align: center;
+    width: 100%;
+}
+.user-confirm > p i{
+margin-right:10px;
+font-size:12px;
+}
+.user-confirm > ul {
+    display: table;
+    float: none;
+    margin: 0 auto;
+    padding: 0;
+}
+
+
+.user-confirm ul li {
+    float: left;
+    list-style: none outside none;
+    margin: 0 2px;
+}
+.user-confirm ul li a {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    color: #FFFFFF;
+    float: left;
+    font-family: open sans;
+    font-size: 11px;
+    line-height: 10px;
+    padding: 6px 11px;
+}
+.reject-btn {
+    background: none repeat scroll 0 0 #FF6262;
+}
+.approve-btn {
+    background: none repeat scroll 0 0 #5BBBFF;
+}

@@ -1,0 +1,10 @@
+<template name="adminSideBarPage">
+
+
+
+  <ul class="nav nav-pills nav-stacked">
+      {{#each route in routes}}
+          <li role="presentation" class="{{isActivePath path=route.path}}"><a href="{{pathFor route.path}}">{{route.title}}</a></li>
+      {{/each}}
+  </ul>
+</template>

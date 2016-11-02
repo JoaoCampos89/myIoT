@@ -1,0 +1,135 @@
+<template name="mySensorsIndexPage">
+<div class="container">
+
+
+  <div class="row">
+    <div class="col-sm-5 text-left">
+      <div class="page-header">
+            <h4><b>Steel Challenge</b></h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <div class="well well-sm">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Status do Sistema</h3>
+            </div>
+            <div class="panel-body">
+              <button type="button" class="btn {{#if settings.status}}btn-success{{else}}btn-warning{{/if}} disabled">
+              {{#if settings.status}}
+                Active
+                {{else}}
+                 Not Active
+              {{/if}}
+              </button>
+            </div>
+          </div>
+        <button type="button" class="js-activate-system btn btn-primary">
+          {{#if settings.status}}
+            Deactivate System
+            {{else}}
+            Activate System
+          {{/if}}
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+<div class="row">
+  <div class="page-header">
+    <h3><b>My Sensors Controller</b></h3>
+  </div>
+      <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"> Send Command</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3">
+                      <p>Node</p>
+                      <select class="js-node-changed">
+                        {{#each node in nodes}}
+                              <option value="{{node.id}}">{{node.id}}</option>
+                        {{/each}}
+                      </select>
+                </div>
+              <div class="col-md-3">
+                <p>Sensor</p>
+                <select>
+                  {{#each sensor in sensors}}
+                        <option value="{{sensor.id}}">{{sensor.id}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            <div class="col-md-3">
+                <p>Type</p>
+                <select class="js-type-changed">
+                  {{#each type in types}}
+                        <option value="{{type}}">{{type}}</option>
+                  {{/each}}
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <p>subType</p>
+                <select>
+                  {{#each subtype in subtypes}}
+                        <option value="{{subtype}}">{{subtype}}</option>
+                  {{/each}}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <p>Payload</p>
+                <input type="text" class="form-control"  placeholder="payload">
+            </div>
+
+
+
+        </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="row">
+  <div class="page-header">
+    <h3><b>{{_ "MESSAGES"}}</b></h3>
+  </div>
+
+
+  <div class="col-md-6 col-md-offset-1 ">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>{{_ "NODE"}}</th>
+                <th>{{_ "SENSOR"}}</th>
+                <th>{{_ "TYPE"}}</th>
+                <th>{{_ "SUBTYPE"}}</th>
+                <th>{{_ "PAYLOAD"}}</th>
+              </tr>
+            </thead>
+          <tbody>
+            {{#each message in messages}}
+            <tr>
+              <th>{{message.sender}}</th>
+              <td>{{message.sensor}}</td>
+              <td>{{message.command}}</td>
+              <td>{{message.type}}</td>
+              <td>{{message.payload}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        <button type="button" class="js-remove-messages btn btn-danger btn-lg">
+          Apagar
+        </button>
+  </div>
+</div>
+
+</div>
+</template>

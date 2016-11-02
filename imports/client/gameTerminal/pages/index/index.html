@@ -1,0 +1,51 @@
+<template name="gameTerminalIndexPage">
+  <div class="page-header text-center">
+    <h3>{{_ "CHOOSE_GAME"}}</h3>
+  </div>
+  <div class="row text-center">
+
+    <div class="col-md-6">
+      <div class="page-header text-center">
+        <h3><b>{{_ "GAME_TEAM"}}</b></h3>
+      </div>
+      <div class="row">
+        {{#each gameType in gameTypes}}
+        {{# if gameType.team}}
+          <div class="col-md-4">
+            <button type="button" class="btn btn-success btn-circle-game-terminal js-choose-game {{equalChoose 'team' gameType._id}}" data-type="team" data-id="{{gameType._id}}">
+              {{gameType.name}}
+            </button>
+          </div>
+          {{/if}}
+        {{/each}}
+      </div>
+
+
+    </div>
+    <div class="col-md-6">
+        <div class="page-header text-center">
+          <h3><b>{{_ "GAME_INDIVIDUAL"}}</b></h3>
+        </div>
+        <div class="row">
+          {{#each gameType in gameTypes}}
+            {{# if gameType.individual}}
+              <div class="col-md-4">
+                <button type="button" class="btn btn-success btn-circle-game-terminal js-choose-game {{equalChoose 'individual' gameType._id}}" data-type="individual" data-id="{{gameType._id}}">
+                  {{gameType.name}}
+                </button>
+              </div>
+            {{/if}}
+          {{/each}}
+        </div>
+    </div>
+
+  </div>
+  <div class="row" style="padding-top:20px;">
+    <div class="col-md-10 col-md-offset-1">
+        <button type="button" class="btn btn-success btn-block btn-lg js-create-game">
+          {{_ "CREATE_GAME"}}
+        </button>
+    </div>
+  </div>
+
+</template>

@@ -1,0 +1,8 @@
+<template name="mySensorsSideBarPage">
+
+  <ul class="nav nav-pills nav-stacked">
+        {{#each route in routes}}
+            <li role="presentation" class="{{isActiveRoute name=route.name}}"><a href="{{pathFor route.name}}">{{_ route.title}}</a></li>
+        {{/each}}
+  </ul>
+</template>

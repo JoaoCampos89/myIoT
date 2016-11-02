@@ -1,0 +1,24 @@
+<template name="gameNextPlayerPage">
+  <div class="row">
+    <div class="col-sm-5 text-left">
+      <h5>tipo de jogo</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+    <h5>Bracket</h5>
+      {{> tournamentBracketComponent tournamentBracket=tournamentBracket}}
+    </div>
+    <div class="col-sm-6">
+          {{>nextPlayerComponent nextPlayers=nextPlayers currentPlayer=currentPlayer}}
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-sm-offset-4 col-sm-3 text-center">
+          <button class="btn btn-default terminateGame"> Terminar Jogo</button>
+    </div>
+  </div>
+
+</template>

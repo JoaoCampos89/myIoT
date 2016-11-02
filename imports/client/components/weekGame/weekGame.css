@@ -1,0 +1,99 @@
+
+.today-tasks {
+    background: none repeat scroll 0 0 #F4F4F4;
+    float: left;
+    padding: 20px;
+    width: 100%;
+}
+.today-tasks .fancy-heading {
+    float: left;
+    font-size: 18px;
+    line-height: 12px;
+}
+.circle-sta {
+    float: left;
+    margin-bottom: 46px;
+    /*width: 100%;*/
+}
+
+.chart-bg {
+    /*float: left;*/
+    position: relative;
+    text-align: center;
+}
+.task-detals {
+    float: right;
+    width: 55%;
+}
+.chart-bg > span {
+    color: #505050;
+    float: left;
+    font-family: pontano sans;
+    font-size: 26px;
+    left: 0;
+    letter-spacing: 0.25px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+}
+.chart-bg > span:before {
+    color: #444D5C;
+    content: "%";
+    font-size: 15px;
+    left: 0;
+    position: absolute;
+    top: 24px;
+    width: 100%;
+}
+.chart-bg canvas {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+.task-detals > span {
+    color: #444D5C;
+    float: left;
+    font-family: open sans;
+    font-size: 15px;
+    line-height: 12px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+.task-detals > i {
+    color: #818181;
+    float: left;
+    font-family: open sans;
+    font-size: 11px;
+    font-style: normal;
+    line-height: 10px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+.task-detals h5 i {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    float: left;
+    height: 20px;
+    margin-right: 10px;
+    margin-top: -3px;
+    width: 20px;
+}
+.bugs > i {
+    background: none repeat scroll 0 0 #0e1111;
+}
+.fixes > i {
+    background: none repeat scroll 0 0 #5BBBFF;
+}
+.task-detals h5 {
+    color: #707070;
+    float: left;
+    font-family: open sans;
+    font-size: 13px;
+    line-height: 10px;
+    margin: 0 0 15px;
+    width: 100%;
+}

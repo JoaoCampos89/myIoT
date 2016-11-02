@@ -1,0 +1,17 @@
+<template name="onlineUserComponent">
+
+  <div class="right-bar-sec">
+		<div class="right-bar">
+
+  <div class="users-online">
+					<a id="user-online" class="toogle-head">{{_ "USERS_ONLINE"}} <span>{{onlineUsers.length}}</span></a>
+					<div class="user-online">
+						<ul>
+              {{#each onlineUser in onlineUsers}}
+							<li><img src="http://placehold.it/32x32" alt="" /><h5><a href="#" title="">{{onlineUser.name}}</a></h5><span class="online">{{_ "ONLINE"}}</span> </li>
+              {{/each}}
+            </ul>
+					</div>
+				</div><!-- Users Online -->
+</div></div>
+</template>

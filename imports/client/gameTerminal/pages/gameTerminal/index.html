@@ -1,0 +1,14 @@
+<template name="gameTerminalPage">
+  <div class="page-header">
+    <h3>{{_ 'CHOOSE_ROOM'}}</h3>
+  </div>
+  <div class="row">
+    {{#each room in rooms}}
+        <div class="col-md-3 room-box js-choose-room" data-id={{room._id}}>
+            {{room.name}}
+        </div>
+    {{/each}}
+  </div>
+
+
+</template>

@@ -1,0 +1,24 @@
+<template name="adminLayoutPage">
+  <div style="padding-top:50px;background-color:black;">
+
+  </div>
+    <!-- {{#if currentUser}}  -->
+  {{#if isInRole 'super-admin, admin' 'admin'}}
+     <div class="container-fluid">
+          <div class="col-md-2">
+            {{> Template.dynamic template=sideBar}}
+          </div>
+          <div class="col-md-10">
+            {{> breadcrumb}}
+
+            {{> Template.dynamic template=page}}
+          </div>
+
+     </div>
+  {{else}}
+      <h1 class="admin-not-authorized-msg">{{_ 'NOT_AUTHORIZED'}}</h1>
+  {{/if}}
+
+
+
+</template>

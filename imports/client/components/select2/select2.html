@@ -1,0 +1,7 @@
+<template name="select2Component">
+  <select class="js-select2">
+    {{#each item in items}}
+        <option value={{item.value}} {{item.options}}>{{item.name}}</option>
+    {{/each}}
+  </select>
+</template>

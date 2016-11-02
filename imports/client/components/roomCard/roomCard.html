@@ -1,0 +1,14 @@
+<template name="roomCardComponent">
+  <div class="plan">
+  	<h3><i class="fa fa-globe"></i>{{roomCard.name}}</h3>
+  		<div class="price-rate">
+  			<h3><i class="fa fa-group"></i>{{roomCard.userCount}}<span>{{_ "USERS"}}</span></h3>
+  		</div>
+  	<p>{{roomCard.description}}</p>
+  	<ul>
+  		<li><i class="fa fa-phone"></i>{{_ "NUMBER_OF_SENSORS"}}: {{roomCard.sensorCount}}</li>
+  		<li><i class="fa fa-user"></i>{{_ "GAME_BEING_PLAYED"}}: {{roomCard.gameBeingPlayed}}</li>
+  		<li><i class="fa fa-crosshairs"></i>{{_ "GAMES_PLAYED_TODAY"}}: {{roomCard.gamesPlayedToday}}</li>
+  	</ul>
+  </div>
+</template>

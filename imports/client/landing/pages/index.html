@@ -1,0 +1,15 @@
+<template name="indexPage">
+
+<div class="jumbotron">
+  <h1 id="welcome">Welcome to IPSC</h1>
+  <p></p>
+</div>
+{{#if user}}
+  <h1>Go to the Rooms page</h1>
+{{else}}
+  {{> atNavButton}}
+  <a href="/game-terminal" class="btn btn-default"> Go To Terminal</a>
+{{/if}}
+
+
+</template>

@@ -1,0 +1,14 @@
+<template name="userRecentChallengersComponent">
+  <div class="my-photos">
+						<div class="my-photo-head">
+							<span><i class="fa fa-picture-o"></i>Recent Challengers</span>
+						</div>
+							<ul>
+                {{#each userRecentChallenger in userRecentChallengers}}
+								<li><img src="http://placehold.it/98x98" alt="" />
+								<p>{{userRecentChallenger.name}}</p>
+								</li>
+                {{/each}}
+							</ul>
+					</div>
+</template>

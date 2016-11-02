@@ -1,0 +1,18 @@
+<template name="sensorComponent">
+  <div class="twitter-box widget-body black">
+  					{{>roundProgressChartComponent roundProgressChart=roundProgressChart}}
+  					<a href="#" title="">{{_ "SENSOR_ID"}}{{sensorData.id}}</a>
+  					<div class="tweet-box">
+              <div>{{_ "ROOM"}}:
+  						        <div>{{sensorData.room}}</div>
+              </div>
+              <div>{{_ "SIGNAL_STRENGTH"}}:
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{sensorData.signalStrength}}" aria-valuemin="0" aria-valuemax="100" style="width: {{sensorData.signalStrength}}%; min-width: 2em;">
+                    {{sensorData.signalStrength}}
+                  </div>
+                </div>
+              </div>
+  					</div>
+    </div>
+</template>

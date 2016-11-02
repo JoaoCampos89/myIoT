@@ -1,0 +1,15 @@
+<template name="recentUserComponent">
+<section id="user-registered">
+				<h2 class="fancy-heading"> NEW <i>USERS</i></h2>
+
+				{{#each recentUser in recentUsers}}
+					<Div class="col-md-3">
+						<div class="user-confirm">
+							<img src="http://placehold.it/117x117" alt="" />
+							<h3>{{recentUser.name}}</h3>
+							<p><i class="fa fa-clock-o"></i> {{recentUser.dateRegistered}}</p>
+						</div>
+					</div>
+				{{/each}}
+			</section>
+</template>

@@ -1,0 +1,85 @@
+/* Twitter Box */
+.twitter-box {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+
+    float: left;
+    width: 100%;
+}
+.twitter-box a {
+    display: table;
+    margin: 0 auto;
+}
+.twitter-box img {
+    display: table;
+    float: none;
+    height: 95px;
+    margin: 20px auto 0;
+    width: 95px;
+
+
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+.twitter-box > a {
+    color: #F4F4F4;
+    display: table;
+    font-family: open sans;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    line-height: 10px;
+    margin: 10px auto 0;
+}
+.tweet-box {
+    background: none repeat scroll 0 0 #353B47;
+    float: left;
+    margin-top: 20px;
+    padding: 15px;
+    position: relative;
+    width: 100%;
+}
+.tweet-box > i {
+    background: none repeat scroll 0 0 #353B47;
+    border-radius: 50%;
+    color: #F4F4F4;
+    float: left;
+    font-size: 25px;
+    height: 45px;
+    left: 0;
+    line-height: 45px;
+    position: inherit;
+    text-align: center;
+    top: -36px;
+    width: 45px;
+}
+.tweet-box > a {
+    color: #F4F4F4;
+    float: left;
+    font-family: pt sans;
+    font-size: 13px;
+    letter-spacing: 0.25px;
+    line-height: 25px;
+    margin-top: -39px;
+    width: 100%;
+}
+
+.tweet-box > a i {
+    color: #26BDFF;
+    float: none;
+    font-size: 13px;
+    font-style: normal;
+}
+/* Widget Body */
+.widget-body {
+    background: none repeat scroll 0 0 #F4F4F4;
+    float: left;
+    margin: 30px 0 0;
+    width: 100%;
+}

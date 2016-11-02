@@ -1,0 +1,27 @@
+<template name="adminSensorsViewComponent">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Sensor: {{sensor.sketchName}}</h3>
+    </div>
+    <div class="panel-body">
+      <dl class="dl-horizontal">
+        <dt>{{_ "ID"}}</dt>
+        <dd>{{sensor.id}}</dd>
+        <dt>{{_ "HEARTBEAT"}}</dt>
+        <dd>{{sensor.heartbeat}}</dd>
+        <dt>{{_ "REBOOT"}}</dt>
+        <dd>{{sensor.reboot}}</dd>
+      </dl>
+      <button type="button" class="btn btn-default btn-block js-request-heartbeat">
+          {{_ "REQUEST_HEARTBEAT"}}
+      </button>
+<!--
+      <button type="button" class="btn btn-default btn-block js-request-reboot">
+          {{_ "REQUEST_REBOOT"}}
+      </button> -->
+    </div>
+
+  </div>
+
+
+</template>

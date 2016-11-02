@@ -1,0 +1,30 @@
+<template name="layoutPage">
+  <!--  {{#if currentUser}} -->
+
+    {{> navBarPage}}
+
+
+      {{#if sideBar}}
+        <div class="container-fluid">
+              <div class="row">
+                  <div class="col-sm-2">
+                    {{> Template.dynamic template=sideBar}}
+                  </div>
+                  <div class="col-sm-10">
+                    {{> Template.dynamic template=main}}
+                  </div>
+                </div>
+        </div>
+      {{else}}
+        <div class="container">
+            {{> Template.dynamic template=main}}
+        </div>
+      {{/if}}
+
+
+
+
+
+  <!--   {{else}} Tem de estar logado {{/if}} -->
+
+</template>

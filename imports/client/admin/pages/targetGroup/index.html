@@ -1,0 +1,78 @@
+<template name="adminTargetGroupPage">
+  <div class="page-header">
+    <h1>Gestão das Salas <small><button type="button" class="btn btn-success btn-circle btn-xl js-add-room text-center"> + </button></small></h1>
+  </div>
+  <div class="row">
+      <div class="col-sm-3">
+        <h3>Sensores Sem Sala</h3>
+        <div class="js-sensors-without-group">
+          <div class="row">
+              {{#each gateway in sensorsWithoutGroup}}
+
+                {{#each node in gateway.nodes}}
+                  {{#unless node.targetGroupId}}
+                      <div draggable="true" style="background-color:blue;" class="js-sensor-without-group" data-gateway="{{gateway._id}}" data-node="{{node.id}}">
+                        <div class="col-md-6">
+                          gateway: {{gateway.name}}
+                        </div>
+                        <div class="col-md-6">
+                          node: {{node.id}}
+                        </div>
+                      </div>
+                  {{/unless}}
+                {{/each}}
+              {{/each}}
+          </div>
+        </div>
+      </div>
+
+
+
+    {{#each room in rooms}}
+      <div class="col-sm-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title" style="display:inline; padding-right:3px;">Sala: {{room.name}}</h3>
+            <button type="button" class="btn btn-primary js-edit-room" data-id={{room._id}}>
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="btn btn-danger js-remove-room" data-id={{room._id}}>
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="panel-body">
+            <h3>Sensores</h3>
+            <div class="js-room-nodes" data-targetgroup="{{room._id}}">
+              <div class="row">
+                  {{#each gateway in gateways room._id}}
+                    {{#each node in gateway.nodes}}
+                      {{#if node.targetGroupId}}
+                        <div draggable="true" style="background-color:blue;" class="js-room-node" data-gateway="{{gateway._id}}" data-node="{{node.id}}" data-targetgroup="{{room._id}}">
+                          <div class="col-md-6">
+                            gateway: {{gateway.name}}
+                          </div>
+                          <div class="col-md-6">
+                            node: {{node.id}}
+                          </div>
+                        </div>
+                      {{/if}}
+                    {{/each}}
+                  {{/each}}
+              </div>
+            </div>
+
+
+          </div>
+          <div class="panel-footer">
+
+          </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+
+
+
+
+</template>

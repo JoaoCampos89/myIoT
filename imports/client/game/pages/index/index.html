@@ -1,0 +1,16 @@
+<template name="gameIndexPage">
+  <div class="page-header">
+    <h3>{{_ 'GAME_INDEX'}}</h3>
+  </div>
+  <a href="{{pathFor 'gameCreatePage'}}" class="btn btn-default js-create-game">Create Game</a>
+  <p>  </p>
+  <div class="well well-sm">
+    {{#if playedGames}}
+
+    {{else}}
+          <h3><b>{{currentUser.name}}</b> Você ainda não jogou nenhum jogo</h3>
+    {{/if}}
+
+  </div>
+
+</template>

@@ -1,0 +1,33 @@
+<template name="startGameComponent">
+  <div class="col-md-4 text-center">
+    <div class="well well-sm">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{_ "GAME"}}</h3>
+          </div>
+          <div class="panel-body">
+            <button type="button" class="js-start-game btn {{#if gameStatus}}btn-danger{{else}}btn-success{{/if}}">
+            {{#if gameStatus}}
+              {{_ "STOP_ROUND_GAME"}}
+              {{else}}
+                {{_ "START_ROUND_GAME"}}
+            {{/if}}
+            </button>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-4 text-center">
+    <div class="well well-sm">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{_ "TIME"}}</h3>
+          </div>
+          <div class="panel-body">
+                  <h3>{{timer}}</h3>
+          </div>
+        </div>
+    </div>
+  </div>
+
+</template>

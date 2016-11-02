@@ -1,0 +1,32 @@
+<template name="gameTerminalMountIndividualPage">
+  <div class="page-header">
+    <h3>{{game.gameType.name}}</h3>
+  </div>
+  <div class="row" style="padding-top:20px;">
+    <div class="col-md-12">
+      Este é um jogo individual
+    </div>
+
+  </div>
+
+  <div class="row" style="padding-top:20px;">
+    <div class="col-md-3 col-md-offset-2  individual-box js-individual-box">
+      {{#each player in players}}
+          <li class="list-group-item" draggable="true" data-id="{{player._id}}">{{player.name}}</li>
+          {{else}}
+          <p>
+            Por gentileza  arraste os jogadores
+          </p>
+        {{/each}}
+    </div>
+  </div>
+
+
+  <div class="row" style="padding-top:20px;">
+    <div class="col-md-12">
+      <button type="button" class="btn btn-success btn-lg btn-block js-go-game">
+        Ir para jogo
+      </button>
+    </div>
+  </div>
+</template>

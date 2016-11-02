@@ -1,0 +1,23 @@
+<template name="timelineComponent">
+  <div class="timeline-sec widget-body">
+  					<div class="timeline-head pink">
+  						<span>{{timeline.title}}</span>
+  					</div>
+  					<div id="scrollbox3" class="timeline">
+  						<ul>
+                {{#each timelineEntry in timelineEntries}}
+  							<li>
+  								<div class="timeline-title gray">
+  									<h6>{{timelineEntry.user.name}}</h6>
+  									<i>{{timelineEntry.date}}</i>
+  									</div>
+  								<div class="timeline-content">
+  									<p>{{timelineEntry.message}}</p>
+  								</div>
+  							</li>
+                {{/each}}
+  						</ul>
+  					</div>
+  				</div>
+
+</template>

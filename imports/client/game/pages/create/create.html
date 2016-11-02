@@ -1,0 +1,52 @@
+<template name="gameCreatePage">
+  <div class="page-header">
+    <h1>{{_ "CREATE_GAME"}}</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+        <div class="well well-sm">
+
+        <div class="form-group">
+          <label for="game-create-name">{{_ 'GAME_NAME'}}</label>
+          <input type="text" class="form-control js-game-name" id="game-create-name" placeholder="">
+        </div>
+        <p>{{_ "GAME_TYPE"}}</p>
+          <select name="gameType" class="js-select-game-type form-control">
+          <!--  <option selected disabled>Escolha o Jogo</option> -->
+          {{#each gameType in gameTypes}}
+            <option value="{{gameType._id}}">{{gameType.name}}</option>
+          {{/each}}
+
+
+        <!--  <p>{{_ "MAX_PLAYERS"}} </p>
+            <select name="maxPlayers" class="js-select-max-players form-control">
+            {{#each maxPlayer in maxPlayers}}
+              <option value="{{maxPlayer}}">{{maxPlayer}}</option>
+            {{/each}}
+          </select> -->
+
+            </select>
+            <p>{{_ "ROOM"}}</p>
+              <select name="room" class="js-select-room form-control">
+              <!--  <option selected disabled>Escolha a Sala</option>-->
+              {{#each room in rooms}}
+                <option value="{{room._id}}">{{room.name}}</option>
+              {{/each}}
+              </select>
+          </div>
+
+
+          <button type="button" class="js-create-game btn btn-default btn-success">
+            Create Game
+          </button>
+    </div>
+    <p> {{getState "gameType"}}</p>
+    <p>
+        {{getState "maxPlayers"}}
+    </p>
+  </div>
+
+
+
+
+</template>

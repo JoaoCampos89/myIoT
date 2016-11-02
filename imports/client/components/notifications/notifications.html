@@ -1,0 +1,16 @@
+<template name="notificationsComponent">
+  <div class="header-alert">
+  			<ul>
+  				<li><a title="" class="notification-btn"><i class="fa fa-bell"></i><span>{{data.length}}</span></a>
+  					<div class="notification">
+  						<span>You have {{data.length}} New Notifications</span>
+              {{#each notification in data}}
+  						<a href="{{notification.link}}" title=""><img src="http://placehold.it/40x40" alt="" />{{notification.text}}<p><i class="fa fa-clock-o"></i>{{notification.date}}</p></a>
+              {{/each}}
+  						<a href="#" class="view-all">{{_ "VIEW_ALL_NOTIFICATIONS"}}</a>
+  					</div>
+  				</li>
+
+  			</ul>
+  		</div>
+</template>

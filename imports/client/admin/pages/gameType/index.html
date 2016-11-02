@@ -1,0 +1,34 @@
+<template name="adminGameTypePage">
+  <div class="page-header">
+    <h1> Tipos de Jogos <small><button type="button" class="btn btn-success btn-circle btn-xl js-add-room text-center"> + </button></small></h1>
+  </div>
+  <div class="row">
+    {{#each game in games}}
+      <div class="col-sm-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Jogo: {{game.name}}</h3>
+          </div>
+          <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <h4>Máximo Jogadores</h4>
+                </div>
+                <div class="col-md-6">
+                  <h4></h4>
+                </div>
+              </div>
+          </div>
+          <div class="panel-footer">
+
+          </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+
+
+
+
+</template>

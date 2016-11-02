@@ -1,0 +1,25 @@
+<template name="mySensorsNodesPage">
+  <div class="container">
+        <div class="row">
+              {{#each node in nodes}}
+                {{#with node}}            
+                <div class="col-md-4">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">Node: {{node.sketchName}}</h3>
+                      {{#if isGateway node.id}}
+                      <h4>
+                        Gateway: {{#if isGatewayReady}}Ready {{else}}Not Ready {{/if}}
+                      </h4>
+                      {{/if}}
+                    </div>
+                    <div class="panel-body">
+                          <p>{{_ "LAST_HEARTBEAT"}}: {{node.heartbeat}}  <button type="button" class="js-request-heartbeat btn btn-default">request</button> </p>
+                    </div>
+                  </div>
+                </div>
+                  {{/with}}
+              {{/each}}
+        </div>
+  </div>
+</template>

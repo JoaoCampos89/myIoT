@@ -1,0 +1,21 @@
+<template name="gameTerminalSideBarPage">
+
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <b>{{_ "PLAYERS"}}</b>
+    </div>
+    <div class="col-md-12" style="padding-top:10px;">
+      <ul class="list-group js-sidebar-players">
+        {{#each player in players}}
+          <li class="list-group-item" draggable="true" data-id="{{player._id}}">{{player.name}}</li>
+
+        {{else}}
+            <p>
+              <b>{{_ "WITHOUT_PLAYERS_ONLINE"}}</b>
+            </p>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+
+</template>

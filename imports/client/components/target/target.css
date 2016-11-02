@@ -1,0 +1,26 @@
+.target-component.circle {
+  margin: auto;
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 150px;
+  background: #000
+}
+
+.target-component.circle.small  {
+  position: absolute;
+  top: 8%;
+  left:9%;
+  width: 250px;
+  height: 250px;
+  border-radius: 125px;
+  background: red;
+}
+
+.target-component.circle.small.red  {
+  background: red;
+}
+
+.target-component.circle.small.green {
+  background: green;
+}

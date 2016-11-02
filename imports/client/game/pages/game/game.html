@@ -1,0 +1,159 @@
+<template name="gamePage">
+
+  <div class="row">
+    <div class="col-sm-5 text-left">
+      <h4><b>Steel Challenge</b></h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <div class="well well-sm">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Status do Sistema</h3>
+            </div>
+            <div class="panel-body">
+              <button type="button" class="btn {{#if systemStatus}}btn-success{{else}}btn-danger{{/if}} disabled">
+              {{#if systemStatus}}
+                Active
+                {{else}}
+                 Not Active
+              {{/if}}
+              </button>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 text-center">
+      <div class="well well-sm">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">GAME</h3>
+            </div>
+            <div class="panel-body">
+              <button type="button" class="js-start-game btn {{#if gameStatus}}btn-danger{{else}}btn-success{{/if}}">
+              {{#if gameStatus}}
+                Stop Game
+                {{else}}
+                Start Game
+              {{/if}}
+              </button>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
+      <div class="well well-sm">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">TIME</h3>
+            </div>
+            <div class="panel-body">
+                    <h3>{{timer}}</h3>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="row">
+  <h3><b>Jogo Tiro Rápido</b></h3>
+<!--  <div class="col-md-3">
+    <div class="well well-sm text-center">
+        <h3>Alvo 1</h3>
+      {{> targetComponent status=targetOptions.status}}
+    </div>
+  </div>-->
+  <div class="col-md-6 col-md-offset-1 ">
+          <table class="table">
+            <thead>
+              <tr>
+                <th> Jogador</th>
+                <th>Alvo</th>
+                <th>Tempo</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+          <tbody>
+            {{#each value in values}}
+            <tr>
+              <th>{{currentUser.username}}</th>
+              <td>{{value.node}}</td>
+              <td>{{shotTime value.timestamp}}</td>
+              <td>{{value.value}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        <button type="button" class="js-remove-values btn btn-danger btn-lg">
+          Apagar
+        </button>
+  </div>
+</div>
+
+<!--  <div class="row">
+    {{>gamePlayerHeaderComponent data=gamePlayerHeader}}
+  </div> -->
+
+
+
+  <div class="row">
+    {{#if Template.subscriptionsReady}}
+          <!-- This is displayed when all data is ready. -->
+          {{#each target in targets}}
+          <div class="col-sm-1">
+            {{> timeTargetComponent time=time}}
+          </div>
+          {{/each}}
+
+    {{else}}
+          Loading...
+    {{/if}}
+  </div>
+<div class="row">
+<p>
+
+</p>
+
+  <!-- configure the game to start-->
+<!--  {{#if configuredGame}}
+        {{#if game}}
+              <h1>{{timer}}</h1>
+        {{else}}
+              <button id="startGame">Start Game</button>
+       {{/if}}
+ {{else}}
+    <button id="addAllLoggedUsers">Add all logged users to Game</button>
+  {{/if}}-->
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Nós</th>
+        <th>Sensores</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each node in nodes}}
+      <tr>
+        <th>{{node.id}}</th>
+          <td>
+        {{#each sensor in node.sensor}}
+            {{sensor}}
+        {{/each}}
+      </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  </div>
+</div>
+
+
+
+</template>

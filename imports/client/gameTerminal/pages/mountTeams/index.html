@@ -1,0 +1,59 @@
+<template name="gameTerminalMountTeamsPage">
+  <div class="page-header">
+    <h3>{{game.gameType.name}}</h3>
+  </div>
+  <div class="row" style="padding-top:20px;">
+    <div class="col-md-12">
+      Este é um jogo em equipes
+    </div>
+    <div class="col-md-6">
+      <button type="button" class="btn btn-default js-open-form-create-team">
+        Criar Equipes
+      </button>
+    </div>
+    <div class="col-md-6">
+      Aleatório
+    </div>
+  </div>
+  {{#if createTeam}}
+    <form>
+        <div class="form-group">
+          <label for="teamName"></label>
+          <input type="text" class="form-control" id="teamName" placeholder="Insira o nome da equipa">
+
+        </div>
+      <button type="submit" class="btn btn-default js-create-team">
+        {{_ "CREATE_TEAM"}}
+      </button>
+    </form>
+
+  {{/if}}
+  <div class="row" style="padding-top:20px;">
+    {{#each team in teams}}
+        <div class="col-md-3 team-box js-team-box">
+            <p>{{team.name}}</p>
+            {{#each player in team.players}}
+                <li class="list-group-item" draggable="true" data-id="{{player._id}}">{{player.name}}</li>
+            {{else}}
+              <p>
+               Arraste os jogadores
+              </p>
+            {{/each}}
+        </div>
+    {{else}}
+      <p>
+        Por gentileza crie equipes e arraste os jogadores
+      </p>
+    {{/each}}
+  </div>
+
+
+  <div class="row" style="padding-top:20px;">
+    <div class="col-md-12">
+      <button type="button" class="btn btn-success btn-lg btn-block js-create-game">
+        Começar jogo
+      </button>
+    </div>
+  </div>
+
+</template>

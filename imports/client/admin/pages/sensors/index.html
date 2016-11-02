@@ -1,0 +1,52 @@
+<template name="adminSensorsPage">
+<div class="page-header">
+  <h1>Gestão dos Sensores</h1>
+</div>
+
+<div class="row" style="padding-bottom:20px;">
+  <div class="col-md-2 text-center">
+    <h4>{{_ "GATEWAY"}}</h4>
+  </div>
+  <div class="col-md-3 text-center">
+    <select class="js-select-gateway">
+      <option value="">Selecione Gateway</option>
+      {{#each gateway in gateways}}
+        <option value="{{gateway._id}}">{{gateway.name}}</option>
+      {{/each}}
+    </select>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <ul class="nav nav-tabs sensorsTabs">
+      {{#each count in counts}}
+        <li role="presentation"  class="{{#if isTypeActive count.type}}active{{/if}}"    data-index="{{@index}}"><a href="#">{{count.field}} <span class="badge">{{countNodes   count.type}}</span></a></li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
+
+
+<!--  <div class="row">
+  {{#if Template.subscriptionsReady}}
+    {{#each sensorData in sensors}}
+
+    <div class="col-sm-3">
+      {{>sensorComponent sensorData=sensorData}}
+    </div>
+    {{/each}}
+  {{/if}}
+</div> -->
+<div class="row" style="padding-top:50px;">
+  {{#if Template.subscriptionsReady}}
+    {{#each sensor in sensors}}
+    <div class="col-sm-6 col-md-4 col-lg-3 text-center">
+      {{>adminSensorsViewComponent sensor=sensor gatewayId=gatewayId}}
+    </div>
+    {{/each}}
+  {{/if}}
+</div>
+
+
+</template>

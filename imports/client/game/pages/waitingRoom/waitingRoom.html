@@ -1,0 +1,38 @@
+<template name="gameWaitingRoomPage">
+{{#if roomName}}
+<div class="row">
+  <div class="col-sm-offset-3">
+       <h1> Formato de jogo</h1>
+  </div>
+
+</div>
+<div class="row">
+    {{#each gameType in gameTypes}}
+      {{#with gameType._id}}
+      <div class="col-sm-6 col-md-4 game-type-choice">
+        <div class="thumbnail">
+          <img src="..." alt="...">
+          <div class="caption">
+            <h3>{{gameType.name}}</h3>
+            <p>{{gameType.description}}</p>
+            <p><b>Players: </b>{{gameType.minPlayers}} - {{gameType.maxPlayers}}</p>
+          </div>
+        </div>
+      </div>
+      {{/with}}
+    {{/each}}
+</div>
+{{else}}
+
+
+<h1>Não existe essa sala</h1>
+
+
+{{/if}}
+<!--
+   {{#each gameType in gameTypes}}
+    <h1>{{gameType.name}}</h1>
+   {{/each}}
+-->
+
+</template>

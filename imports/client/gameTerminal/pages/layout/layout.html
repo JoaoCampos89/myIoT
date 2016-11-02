@@ -1,0 +1,30 @@
+<template name="gameTerminalLayoutPage">
+  <!--  {{#if currentUser}} -->
+
+    <!--  {{> navBarPage}}-->
+{{#if gatewayActive}}
+
+      {{#if sideBar}}
+        <div class="container-fluid">
+              <div class="row">
+                  <div class="col-sm-2">
+                    {{> Template.dynamic template=sideBar}}
+                  </div>
+                  <div class="col-sm-10">
+                    {{> Template.dynamic template=main}}
+                  </div>
+                </div>
+        </div>
+      {{else}}
+        <div class="container">
+            {{> Template.dynamic template=main}}
+        </div>
+      {{/if}}
+  {{else}}
+  <div class="container">
+    <h1>Contact your administrator this system is with problemas. If you are admin go to <a href="/admin">Admin</a></h1>
+
+  </div>
+
+  {{/if}}
+</template>

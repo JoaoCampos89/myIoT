@@ -1,0 +1,24 @@
+<template name="mySensorsLayoutPage">
+
+    <!-- {{#if currentUser}}
+ {{#if isInRole 'super-admin,admin' 'admin'}}
+          {{> breadcrumb}}-->
+              {{> navBarPage}}
+
+          <div class="container-fluid">
+            <div class="col-md-2">
+              {{> Template.dynamic template=sideBar}}
+            </div>
+            <div class="col-md-10">
+              {{> Template.dynamic template=page}}
+            </div>
+          </div>
+
+    <!-- {{/if}}
+ {{else}}
+  tem de estar logado
+  {{/if}}
+  -->
+
+
+</template>

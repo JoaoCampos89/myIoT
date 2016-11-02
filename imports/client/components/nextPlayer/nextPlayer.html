@@ -1,0 +1,23 @@
+<template name="nextPlayerComponent">
+
+  <div class="inbox-widget widget-body">
+    <div class="inbox-widget-head black">
+      <div>
+        {{>userImageComponent data=currentPlayerUserImage}}
+      </div>
+      <h6>{{currentPlayer.name}}</h6>
+      <span><i class="fa fa-map-marker"></i> {{currentPlayer.location}}</span>
+      <p>{{_ "CURRENT_PLAYER"}}</p>
+    </div>
+
+    <ul class="your-message scrollBox">
+      {{#each nextPlayer in nextPlayers}}
+      <li>{{>userImageComponent data=nextPlayerUserImage}}
+        <i>{{nextPlayer.name}}</i>
+        <p><span><i class="fa fa-map-marker"></i> {{nextPlayer.location}}</span></p>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+
+</template>
