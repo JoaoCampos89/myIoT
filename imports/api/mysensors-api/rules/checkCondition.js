@@ -26,13 +26,13 @@ export default function(type, previousValue, value, limit){
           break;
         }
         case 'risingEdge':{
-          if(previousValue<value){
-            return false;
+          if(previousValue-value<limit){
+            return true;
           }
           break;
         }
         case 'fallingEdge':{
-          if(previousValue>value){
+          if(previousValue-value>limit){
             return true;
           }
           break;

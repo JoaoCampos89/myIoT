@@ -17,7 +17,7 @@ import {protocol} from '../mysensors-hardware';
 import _ from 'underscore';
 //var deviceId = 'ipsc';
 import {Sensor, Value} from '../mysensors-hardware';
-
+import {checkAllRules} from './rules';
 
 /**
  * [saveValue this functions receives all data from nodes in gateway, monkey patch this function to add the respective behaviour for your
@@ -32,7 +32,8 @@ import {Sensor, Value} from '../mysensors-hardware';
 export default function saveValue(sender, sensor, type, payload, gw) {
   const gatewayId = gw.deviceId;
   //Gateway.update({_id: gw.deviceId, "nodes.id":sender}, {$set:{"nodes.$."});
-  Sensor.update({gatewayId:gatewayId, nodeId:sender, subTypes.subType:type}, {$set:{"subTypes.$.value": payload, "subTypes.$.timestamp": new Date.getTime() }});
+  const timestamp =  new Date.getTime();
+  Sensor.update({gatewayId:gatewayId, nodeId:sender, "subTypes.subType":type}, {$set:{"subTypes.$.value": payload, "subTypes.$.timestamp": timestamp}});
   Value.update({gatewayId:gatewayId, subType:type},{$push:{values:{value:payload, timestamp:timestamp}}});
   checkAllRules(sender, sensor, type, gatewayId);
 

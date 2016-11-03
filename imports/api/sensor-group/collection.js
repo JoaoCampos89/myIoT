@@ -1,12 +1,12 @@
 import {Mongo} from 'meteor/mongo';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
-import generateFixtures from './fixtures.js';
+//import generateFixtures from './fixtures.js';
 
 
 
-const SensorsGroup = new Mongo.Collection("sensorsgroup");
+const SensorGroup = new Mongo.Collection("sensorgroup");
 
-SensorsGroup.generateFixtures = generateFixtures;
+//SensorGroup.generateFixtures = generateFixtures;
 
 /*TargetGroup.allow({
   insert: function() {
@@ -20,7 +20,7 @@ SensorsGroup.generateFixtures = generateFixtures;
   }
 });
 */
-SensorsGroup.schema = new SimpleSchema({
+SensorGroup.schema = new SimpleSchema({
   name: {
     type: String
   },
@@ -35,4 +35,4 @@ SensorsGroup.schema = new SimpleSchema({
  *
  *
  */
-export default SensorsGroup;
+export default SensorGroup;

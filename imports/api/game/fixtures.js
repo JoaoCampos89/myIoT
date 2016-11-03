@@ -1,6 +1,6 @@
 import GameType from '../gameType';
 import Player from '../player';
-import TargetGroup from '../targetGroup';
+//import TargetGroup from '../targetGroup';
 import {Meteor} from 'meteor/meteor';
 
 
