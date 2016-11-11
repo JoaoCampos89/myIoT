@@ -1,0 +1,66 @@
+<template name="adminTimerCreateEditForm">
+
+      <div class="well well-sm">
+          <form >
+            <input type="hidden" class="form-control" value={{gateway.id}} id="id">
+            <!--
+            <div class="form-group {{#if error 'type'}}has-error{{/if}}">
+                <select id="type">
+                  <option value="Serial" {{selected 'Serial' gateway.type}}>Serial</option>
+                  <option value="Ethernet" {{selected 'Ethernet' gateway.type}}>Ethernet</option>
+                </select>
+                <p> {{#if error 'type'}}{{error 'type'}}{{/if}}</p>
+            </div>
+          -->
+          {{> formGroupComponent type='select' field='type' error= (error 'type') options=optionsType selected=selectedType}}
+
+            <div class="form-group {{#if error 'name'}}has-error{{/if}}">
+                <label for="name">Nome da Gateway</label>
+                <input type="text" class="form-control" value={{gateway.name}} id="name" placeholder="Insira o nome da gateway">
+                  <p>  {{#if error 'name'}}{{error 'name'}}{{/if}}</p>
+            </div>
+
+            <div class="form-group {{#if error 'port'}}has-error{{/if}}">
+                <label for="port">Nome da Porta</label>
+                <input type="text" class="form-control" value={{gateway.port}} id="port" placeholder="Insira a Porta Serial">
+                <p>  {{#if error 'port'}}{{error 'port'}}{{/if}}</p>
+            </div>
+
+
+            {{#if (equalType 'Serial' 'Ethernet')}}
+              <div class="form-group {{#if error 'baud'}}has-error{{/if}}">
+                  <select id="baud">
+                    <option value="115200" {{selected 115200 gateway.baud}}>115200</option>
+                  </select>
+                  <p>  {{#if error 'baud'}}{{error 'baud'}}{{/if}}</p>
+              </div>
+            {{/if}}
+
+            {{#if equalType 'WebSocket'}}
+              <div class="form-group {{#if error 'user'}}has-error{{/if}}">
+                  <select id="baud">
+                    <option value="115200" {{selected 115200 gateway.user}}>115200</option>
+                  </select>
+                  <p>  {{#if error 'user'}}{{error 'user'}}{{/if}}</p>
+              </div>
+            {{/if}}
+
+            {{#if equalType 'WebSocket'}}
+              <div class="form-group {{#if error 'baud'}}has-error{{/if}}">
+                  <select id="baud">
+                    <option value="115200" {{selected 115200 gateway.password}}>115200</option>
+                  </select>
+                  <p>  {{#if error 'password'}}{{error 'password'}}{{/if}}</p>
+              </div>
+            {{/if}}
+
+            <button type="submit" class="btn btn-default">
+              {{#if gateway}} Editar Gateway{{else}}  Criar Gateway{{/if}}
+            </button>
+
+      </form>
+</div>
+
+
+
+</template>

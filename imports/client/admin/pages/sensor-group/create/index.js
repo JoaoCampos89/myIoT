@@ -1,10 +1,10 @@
 import './index.html';
 
 import {Template} from 'meteor/templating';
-import {createTargetGroup} from '/imports/api/targetGroup/validated-methods.js';
+import {createSensorGroup} from '/imports/api/sensor-group/validated-methods.js';
 
 
-const templateName = 'adminTargetGroupCreatePage';
+const templateName = 'adminSensorGroupCreatePage';
 
 Template[templateName].onCreated(function(){
 
@@ -12,10 +12,10 @@ Template[templateName].onCreated(function(){
 
 Template[templateName].helpers({
   validatedMethod: function(){
-    return createTargetGroup;
+    return createSensorGroup;
   },
   route: function(){
-    return "adminTargetGroupPage";
+    return "adminSensorGroupPage";
   }
 })
 

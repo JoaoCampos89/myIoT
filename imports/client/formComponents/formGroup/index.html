@@ -1,0 +1,14 @@
+<template name="formGroupComponent">
+  <div class="form-group {{#if error field}}has-error{{/if}}">
+      <label for="{{field}}">{{label}}</label>
+        {{#if equal type 'text'}}
+          <input type="text" class="form-control" value={{value}} id="{{id}}" placeholder="{{placeholder}}">
+        {{/if}}
+
+        {{#if equal type 'select'}}
+
+        {{/if}}
+        <p>  {{#if error field}}{{error field}}{{/if}}</p>
+  </div>
+
+</template>

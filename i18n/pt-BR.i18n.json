@@ -1,0 +1,12 @@
+{
+  "ONLINE": "ONLINE",
+  "USERS_ONLINE": "Usuarios logados",
+  "MESSAGES": "Messages",
+  "NODE": "Node",
+  "SENSOR":"Sensor",
+  "TYPE": "Type",
+  "SUBTYPE": "Sub-Type",
+  "PAYLOAD": "Payload",
+  "VIEW_GAME": "Ver Jogo",
+  "NOT_AUTHORIZED": "Não Autorizado"
+}

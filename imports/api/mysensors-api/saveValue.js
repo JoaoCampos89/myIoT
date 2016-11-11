@@ -34,7 +34,7 @@ export default function saveValue(sender, sensor, type, payload, gw) {
   //Gateway.update({_id: gw.deviceId, "nodes.id":sender}, {$set:{"nodes.$."});
   const timestamp =  new Date.getTime();
   Sensor.update({gatewayId:gatewayId, nodeId:sender, "subTypes.subType":type}, {$set:{"subTypes.$.value": payload, "subTypes.$.timestamp": timestamp}});
-  Value.update({gatewayId:gatewayId, subType:type},{$push:{values:{value:payload, timestamp:timestamp}}});
+  Value.update({gatewayId:gatewayId, subType:type}, {$push:{values:{value:payload, timestamp:timestamp}}});
   checkAllRules(sender, sensor, type, gatewayId);
 
 

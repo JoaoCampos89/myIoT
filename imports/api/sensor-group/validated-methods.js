@@ -2,17 +2,18 @@ import {ValidatedMethod} from 'meteor/mdg:validated-method';
 import {ValidationError}from 'meteor/mdg:validation-error'
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 import {Roles} from 'meteor/alanning:roles';
-import TargetGroup from './index.js';
-import {Gateway} from '../mysensors-hardware';
+import SensorGroup from './index.js';
+import {Gateway} from '../mysensors-hardware/gateway-db';
 import {Meteor} from 'meteor/meteor';
 import _ from 'underscore';
 import Timeline from '../timeline';
+import validatedError from './validated-error.js';
 /**
- * [createTargetGroup creates a target group]
+ * [createSensorGroup creates a target group]
  * @type {ValidatedMethod}
  */
-export const createTargetGroup = new ValidatedMethod({
-  name: 'targetGroup.create',
+export const createSensorGroup = new ValidatedMethod({
+  name: 'SensorGroup.create',
   validate: new SimpleSchema({
     //maxPlayers:{type: Number},
     name: { type: String },
@@ -22,11 +23,11 @@ export const createTargetGroup = new ValidatedMethod({
 
     if(this.userId){
             if(id){
-              TargetGroup.update({_id:id}, {$set: {name:name, updatedBy:this.userId, updatedAt: new Date.now()}});
+              SensorGroup.update({_id:id}, {$set: {name:name, updatedBy:this.userId, updatedAt: new Date.now()}});
               Timeline.insert({message:'A room was updated to the system', id: id, type: 'updateRoom', userId: this.userId, at: new Date.now()});
               return id;
             }else{
-            const _id = TargetGroup.insert({ name:name, createdBy:this.userId, createdAt: new Date.now()});
+            const _id = SensorGroup.insert({ name:name, createdBy:this.userId, createdAt: new Date.now()});
             if(_id){
                 Timeline.insert({message:'A room was added to the system', id:_id, type: 'createRoom', userId: this.userId, at: new Date.now()});
                 return _id;
@@ -34,85 +35,67 @@ export const createTargetGroup = new ValidatedMethod({
           }
     }
       else {
-        throw new ValidationError([
-            {
-              name: 'server',
-              type: 'NOT_ALLOWED',
-              description : "Sorry you have to be super-admin to do this thing."
-            }
-          ]);
+          validatedError.server();
       }
   }
 });
 /**
- * [removeNodeFromTargetGroup removes a node from TargetGroup]
+ * [removeNodeFromSensorGroup removes a node from SensorGroup]
  * @type {ValidatedMethod}
  */
-export const removeNodeFromTargetGroup = new ValidatedMethod({
-  name: 'targetGroup.removeNode',
+export const removeNodeFromSensorGroup = new ValidatedMethod({
+  name: 'SensorGroup.removeNode',
   validate: new SimpleSchema({
     //maxPlayers:{type: Number},
     nodeId: { type: Number},
     gatewayId: { type: String },
-    targetGroupId: {type: String}
+    SensorGroupId: {type: String}
   }).validator(),
-  run({ nodeId, gatewayId, targetGroupId }) {
+  run({ nodeId, gatewayId, SensorGroupId }) {
 
     if(this.userId){
-      TargetGroup.update({_id:targetGroupId,"nodes.gatewayId":gatewayId,"nodes.id":nodeId},{$pull:{"nodes":{id:nodeId,gatewayId:gatewayId}}});
-      Gateway.update({_id:gatewayId,"nodes.id":nodeId},{$unset:{"nodes.$.targetGroupId": 1}});
+      SensorGroup.update({_id:SensorGroupId,"nodes.gatewayId":gatewayId,"nodes.id":nodeId},{$pull:{"nodes":{id:nodeId,gatewayId:gatewayId}}});
+      Gateway.update({_id:gatewayId,"nodes.id":nodeId},{$unset:{"nodes.$.SensorGroupId": 1}});
       return true;
     }
       else {
-        throw new ValidationError([
-            {
-              name: 'server',
-              type: 'NOT_ALLOWED',
-              description : "Sorry you have to be super-admin to do this thing."
-            }
-          ]);
+          validatedError.server();
       }
   }
 });
 
 
 /**
- * [addNodeToTargetGroup add node to the group]
+ * [addNodeToSensorGroup add node to the group]
  * @type {ValidatedMethod}
  */
-export const addNodeToTargetGroup = new ValidatedMethod({
-  name: 'targetGroup.addNode',
+export const addNodeToSensorGroup = new ValidatedMethod({
+  name: 'SensorGroup.addNode',
   validate: new SimpleSchema({
     //maxPlayers:{type: Number},
     nodeId: { type: Number },
     gatewayId: { type: String },
-    targetGroupId: {type: String}
+    SensorGroupId: {type: String}
   }).validator(),
-  run({ nodeId, gatewayId, targetGroupId}) {
+  run({ nodeId, gatewayId, SensorGroupId}) {
 
     if(this.userId){
-           TargetGroup.update({_id:targetGroupId},{$push:{"nodes":{id:nodeId, gatewayId:gatewayId}}});
-           Gateway.update({_id:gatewayId,"nodes.id":nodeId},{$set:{"nodes.$.targetGroupId": targetGroupId}});
+           SensorGroup.update({_id:SensorGroupId},{$push:{"nodes":{id:nodeId, gatewayId:gatewayId}}});
+           Gateway.update({_id:gatewayId,"nodes.id":nodeId},{$set:{"nodes.$.SensorGroupId": SensorGroupId}});
            return true;
     }
       else {
-        throw new ValidationError([
-            {
-              name: 'server',
-              type: 'NOT_ALLOWED',
-              description : "Sorry you have to be super-admin to do this thing."
-            }
-          ]);
+          validatedError.server();
       }
   }
 });
 
 /**
- * [createTargetGroup creates a target group]
+ * [createSensorGroup creates a target group]
  * @type {ValidatedMethod}
  */
-export const removeTargetGroup = new ValidatedMethod({
-  name: 'targetGroup.remove',
+export const removeSensorGroup = new ValidatedMethod({
+  name: 'SensorGroup.remove',
   validate: new SimpleSchema({
     //maxPlayers:{type: Number},
     id: { type: String },
@@ -121,16 +104,10 @@ export const removeTargetGroup = new ValidatedMethod({
 
     if(this.userId){
 
-            TargetGroup.remove({_id: id});
+            SensorGroup.remove({_id: id});
     }
       else {
-        throw new ValidationError([
-            {
-              name: 'server',
-              type: 'NOT_ALLOWED',
-              description : "Sorry you have to be super-admin to do this thing."
-            }
-          ]);
+        validatedError.server();
       }
   }
 });

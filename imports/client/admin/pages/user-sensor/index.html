@@ -1,0 +1,12 @@
+<template name="adminUserSensorPage">
+  <div class="page-header">
+    <h3>{{_ 'VIEW_USER_SENSOR'}} <small><button type="button" class="btn btn-success btn-circle btn-xl js-add-user-sensor text-center"> + </button></small></h3>
+  </div>
+  {{#each sensor in sensors}}
+
+
+  {{else}}
+    <h1>You not have buttons and sliders controls </h1>
+  {{/each}}
+
+</template>

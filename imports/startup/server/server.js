@@ -4,10 +4,10 @@ import {Meteor} from 'meteor/meteor';
 
 
 
-import '../../api/accounts/index.js';
+import '../../api/accounts';
 //import '../../api/game/index.js';
 //import '../../api/game/validated-methods.js';
-import '../../api/user/index.js';
+import '../../api/user';
 import '../../api/mysensors-api';
 //import '../../api/mysensors/index.js';
 //import '../../api/mysensors-api/validated-methods';

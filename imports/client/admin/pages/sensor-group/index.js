@@ -5,30 +5,30 @@ import './edit';
 import './_form';
 
 import {Template} from 'meteor/templating';
-import TargetGroup from '/imports/api/targetGroup';
+import SensorGroup from '/imports/api/sensor-group';
 import {FlowRouter} from 'meteor/kadira:flow-router';
 import {ReactiveVar} from 'meteor/reactive-var';
 import {Gateway} from '/imports/api/mysensors-hardware';
 import {Modal} from 'meteor/peppelg:bootstrap-3-modal';
 
-import {removeNodeFromTargetGroup, addNodeToTargetGroup, removeTargetGroup} from '/imports/api/targetGroup/validated-methods.js';
+import {removeNodeFromSensorGroup, addNodeToSensorGroup, removeSensorGroup} from '/imports/api/sensor-group/validated-methods.js';
 
-const templateName = 'adminTargetGroupPage';
+const templateName = 'adminSensorGroupPage';
 
 Template[templateName].onCreated(function(){
   const instance = this;
   instance.draggedGateway = new ReactiveVar(false);
   instance.draggedNode = new ReactiveVar(false);
-  instance.draggedTargetGroup = new ReactiveVar(false);
+  instance.draggedSensorGroup = new ReactiveVar(false);
 });
 
 Template[templateName].helpers({
   rooms: function(){
-    return TargetGroup.find({});
+    return SensorGroup.find({});
   },
-  gateways:function(targetGroupId){
-    //console.log(Gateway.find({"nodes.targetGroupId":targetGroupId}));
-    return Gateway.find({"nodes.targetGroupId":targetGroupId});
+  gateways:function(SensorGroupId){
+    //console.log(Gateway.find({"nodes.SensorGroupId":SensorGroupId}));
+    return Gateway.find({"nodes.SensorGroupId":SensorGroupId});
   },
   sensorsWithoutGroup:function(){
     return Gateway.find();
@@ -40,14 +40,14 @@ Template[templateName].helpers({
 
 Template[templateName].events({
   "click .js-add-room": function(){
-        FlowRouter.go("adminTargetGroupCreatePage");
+        FlowRouter.go("adminSensorGroupCreatePage");
   },
   // drag single node with room
   "drag .js-room-node": function(event, template){
     template.draggedNode.set(event.currentTarget.dataset.node);
     template.draggedGateway.set(event.currentTarget.dataset.gateway);
-    template.draggedTargetGroup.set(event.currentTarget.dataset.targetgroup);
-    console.log(event.currentTarget.dataset.targetGroup);
+    template.draggedSensorGroup.set(event.currentTarget.dataset.SensorGroup);
+    console.log(event.currentTarget.dataset.SensorGroup);
   },
   // drag sensor without group
   "drag .js-sensor-without-group": function(event, template){
@@ -60,8 +60,8 @@ Template[templateName].events({
     let data = {};
     data.nodeId = Number(template.draggedNode.get());
     data.gatewayId = template.draggedGateway.get();
-    data.targetGroupId = template.draggedTargetGroup.get();
-    removeNodeFromTargetGroup.call(data);
+    data.SensorGroupId = template.draggedSensorGroup.get();
+    removeNodeFromSensorGroup.call(data);
     //TODO implement remove sensor from room
   //  console.log("context" + this);
     console.log("node" + template.draggedNode.get());
@@ -72,8 +72,8 @@ Template[templateName].events({
     let data = {};
     data.nodeId = Number(template.draggedNode.get());
     data.gatewayId = template.draggedGateway.get();
-    data.targetGroupId = event.currentTarget.dataset.targetgroup;
-    addNodeToTargetGroup.call(data);
+    data.SensorGroupId = event.currentTarget.dataset.SensorGroup;
+    addNodeToSensorGroup.call(data);
 
 
     //TODO implement add sensor to room
@@ -90,21 +90,21 @@ Template[templateName].events({
   },
   "click .js-edit-room": function(event){
     const _id =  event.currentTarget.dataset.id;
-    FlowRouter.go("adminTargetGroupEditPage",{id:_id});
+    FlowRouter.go("adminSensorGroupEditPage",{id:_id});
 
   },
   "click .js-remove-room": function(event){
     const modalContext = {};
     const model = {};
     const _id =  event.currentTarget.dataset.id;
-    const room = TargetGroup.findOne({_id:_id});
+    const room = SensorGroup.findOne({_id:_id});
     model.prefix = 'sala';
     model.name = room.name;
     model._id = _id;
     modalContext.model = model;
 
-    modalContext.validatedMethod = removeTargetGroup;
-    modalContext.route = "adminTargetGroupPage";
+    modalContext.validatedMethod = removeSensorGroup;
+    modalContext.route = "adminSensorGroupPage";
     Modal.show("removeModalComponent", modalContext);
   }
 

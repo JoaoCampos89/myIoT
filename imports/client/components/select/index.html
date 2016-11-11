@@ -1,0 +1,8 @@
+<template name="selectComponent">
+  <select id="{{id}}" value="{{value}}" class="form-control {{class}}">
+    {{#each option in options}}
+      <option value="{{option.value}}" {{selectedField option.value value}}>{{option.name}}</option>
+    {{/each}}
+  </select>
+
+</template>

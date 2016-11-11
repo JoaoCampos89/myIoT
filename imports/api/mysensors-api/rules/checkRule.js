@@ -1,12 +1,12 @@
-import rulesCache from './rulesCache.js';
+
 import _ from 'underscore';
 //import Rule from '../../rule';
 //import checkCondition from './checkCondition.js';
 //import {Sensor} from '../../mysensors-hardware';
 import conditionCallback from './conditionCallback.js';
+import rulesCache from './rulesCache.js';
 
-
-import './checkRule.tests.js';
+//import './checkRule.tests.js';
 
 
 

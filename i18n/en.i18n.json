@@ -1,0 +1,23 @@
+{
+  "ONLINE": "ONLINE",
+  "USERS_ONLINE": "Users Online",
+  "MESSAGES": "Messages",
+  "NODE": "Node",
+  "SENSOR":"Sensor",
+  "TYPE": "Type",
+  "SUBTYPE": "Sub-Type",
+  "PAYLOAD": "Payload",
+  "NOT_AUTHORIZED": "Not Authorized",
+  "LAST_SYNCHRONIZE": "Last Synchronization",
+  "DASHBOARD": "Dashboard",
+  "CREATE_EVENT": "Create Event",
+  "CREATE_GAME": "Create Game",
+  "GAME_NAME": "Game Name",
+  "GAME_TYPE": "Game Type",
+  "CREATE_PLAYERS": "Create Players",
+  "GAME": "Game",
+  "GAME_INDEX": "Game Page",
+  "GAME_TYPE": "Game Type",
+  "PLAYERS" : "Players",
+  "required": "__field__ is required"
+}

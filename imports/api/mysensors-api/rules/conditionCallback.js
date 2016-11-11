@@ -47,8 +47,10 @@ export default function(condition){
              }
            }
            const subType = Sensor.findOne({_id:condition.sensorId}).getType(condition.sensorSubType);
-         //  console.log(condition);
-         //  console.log(subType);
-         //  console.log(checkCondition(condition.type, subType.previousValue, subType.value, condition.threshold));
-           return checkCondition(condition.type, subType.previousValue, subType.value, condition.threshold);
+           const conditionArgs = {};
+           conditionArgs.value = subType.value;
+           conditionArgs.previousValue = subType.previousValue;
+           conditionArgs.type = condition.type;
+           conditionArgs.threshold = condition.threshold;
+           return checkCondition(conditionArgs);
 }

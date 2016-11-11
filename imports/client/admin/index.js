@@ -1,13 +1,19 @@
 import './routes';
+//import './pages/form-group';
+
 //import './routes/routes.js';
 import './pages/layout';
 import './pages/sidebar';
-import './pages/users';
-import './pages/synchronize';
-import './pages/timeline';
-import './pages/targetGroup/index.js';
-import './pages/booking';
+//import './pages/users';
+//import './pages/synchronize';
+//import './pages/timeline';
+//import './pages/targetGroup/index.js';
+//import './pages/booking';
 import './pages/dashboard';
 import './pages/sensors';
-import './pages/gameType';
+import './pages/sensor-group';
+import './pages/user-sensor';
+import './pages/timer';
+import './pages/rule';
+//import './pages/gameType';
 import './pages/gateway';

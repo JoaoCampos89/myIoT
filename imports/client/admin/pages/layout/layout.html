@@ -3,7 +3,7 @@
 
   </div>
     <!-- {{#if currentUser}}  -->
-  {{#if isInRole 'super-admin, admin' 'admin'}}
+  <!--{{#if isInRole 'super-admin, admin' 'admin'}} -->
      <div class="container-fluid">
           <div class="col-md-2">
             {{> Template.dynamic template=sideBar}}
@@ -15,10 +15,10 @@
           </div>
 
      </div>
-  {{else}}
+<!--  {{else}}
       <h1 class="admin-not-authorized-msg">{{_ 'NOT_AUTHORIZED'}}</h1>
   {{/if}}
-
+-->
 
 
 </template>

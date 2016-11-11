@@ -6,7 +6,10 @@ import {Meteor} from 'meteor/meteor';
 import s from 'underscore.string';
 import _ from 'underscore';
 import {TAPi18n} from 'meteor/tap:i18n';
-var adminRoutes = FlowRouter.group({
+
+
+
+const adminRoutes = FlowRouter.group({
   prefix: '/admin',
   name: 'admin',
   triggersEnter: [AccountsTemplates.ensureSignedIn]
@@ -38,9 +41,9 @@ function checkAdmin(context, redirect) {
 
 
 // admin layout page
-var layoutPage = 'adminLayoutPage';
+const layoutPage = 'adminLayoutPage';
 // admin sidebarPage
-var sideBarPage = "adminSideBarPage";
+const sideBarPage = "adminSideBarPage";
 
 //var adminLayoutPage = "adminLayoutPage";
 // specific routes first and they are not override
@@ -60,9 +63,20 @@ adminRoutes.route('/', {
   }]
 });
 
+adminRoutes.layoutPage = layoutPage;
+adminRoutes.sideBarPage = sideBarPage;
+
+
+
+adminRoutes.routesArray = [{
+    path: "",
+    name: "dashboard",
+    title: "Dashboard"
+
+  }];
 
 // array of all routes
-adminRoutes.routesArray = [{
+/*adminRoutes.routesArray = [{
     path: "",
     name: "dashboard",
     title: "Dashboard"
@@ -137,6 +151,6 @@ adminRoutes.route('/adminUsersManagementViewPage/:id', {
   },
   parent: "dashboard.users-management",
   title: "View User"
-});
+});*/
 
 export default adminRoutes

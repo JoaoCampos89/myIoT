@@ -1,0 +1,189 @@
+<template name="adminRuleCreateEditForm">
+
+      <div class="well well-sm">
+        <div class="container">
+          <div class="page-header">
+            <h3>{{_ "CREATE_RULE"}}</h3>
+          </div>
+
+            <form>
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="form-group">
+                     <label for="ruleName">{{_ "RULE_NAME"}}</label>
+                     <input type="text" class="form-control" id="ruleName" placeholder="{{_ 'INSERT_RULE_NAME'}}" required value="rule">
+                   </div>
+                </div>
+              </div>
+
+
+
+               {{#each savedRule in savedRules}}
+                  <div class="well well-sm">
+                    <p>{{savedRule.sensorName}} {{savedRule.name}} {{savedRule.value}}</p>
+                  </div>
+               {{/each}}
+              <h2>{{_ "RULE"}}</h2>
+               <!-- rules input group -->
+              {{#each rule in rules}}
+
+                   {{#if moreThanOneRule rule.index}}
+                    <div class="row">
+                      <div class="col-md-11">
+                        <select  name="conector{{rule.index}}" class="form-control" value="{{rule.conector}}">
+                            <option value="1">ou</option>
+                            <option value="2">e</option>
+                        </select>
+                      </div>
+                     </div>
+                   {{/if}}
+                   <div class="row">
+                     <div class="col-md-5">
+                       <select id="ruleType{{rule.index}}" class="form-control js-rule-type" data-index="{{rule.index}}" value="{{rule.type}} ">
+                         <option value="">Choose Type Rule</option>
+                         <option value="hardware">Hardware</option>
+                         <option value="userControl">User Control</option>
+                         <option value="rule">Rule</option>
+                         <option value="timer">Timer</option>
+                       </select>
+                     </div>
+                    </div>
+                    <!--   rule type used for hardware
+                    {{#if (equal rule.type 'hardware')}}
+                    <div class="row" style="padding-top:10px;">
+                      <div class="col-md-11">
+                         <div class="input-group">
+                           <span class="input-group-addon" title="Gateway" >{{_ "GATEWAY"}}</span>
+                             <select id="ruleGateway{{rule.index}}" class="form-control" required value="{{rule.gateway}}">
+                               {{#each gateway in gateways}}
+                                    <option value="{{gateway._id}}">{{gateway.name}}</option>
+                               {{/each}}
+                             </select>
+                            <span class="input-group-addon" title="Node" >{{_ "NODE"}}</span>
+                             <select id="ruleNode{{rule.index}}" class="form-control" required value="{{rule.node}}">
+                                 {{#each node in nodes}}
+                                      <option value="{{node.id}}">{{node.id}}</option>
+                                 {{/each}}
+                             </select>
+                             <span class="input-group-addon" title="Sensor" >{{_ "SENSOR"}}</span>
+                               <select id="ruleSensor{{rule.index}}" class="form-control" required value="{{rule.sensor}}">
+                                 {{#each sensor in sensors}}
+                                      <option value="{{sensor._id}}">{{sensor.name}}</option>
+                                 {{/each}}
+                               </select>
+
+
+                             <span class="input-group-addon" title="SubType" >{{_ "SUBTYPE"}}</span>
+                               <select id="ruleSubType{{rule.index}}" class="form-control" required value="{{rule.subType}}">
+                                  {{#each subType in subTypes}}
+                                       <option value="{{subType.value}}">{{subType.name}}</option>
+                                  {{/each}}
+                               </select>
+                             <span class="input-group-addon">{{_ "CONDITION"}}</span>
+                               <select id="ruleOperator{{rule.index}}"  class="form-control" required value="{{rule.condition}}">
+                                 {{#each condition in conditions}}
+                                   <option value="{{condition.value}}"> {{condition.name}} </option>
+                                {{/each}}
+                               </select>
+                             <span class="input-group-addon" style="width:0px; padding-left:0px; padding-right:0px; border:none;"></span>
+                             <input  id="ruleValue{{rule.index}}"  type="text" class="form-control remove-z-index" placeholder="{{_ 'INSERT_VALUE'}}" value="0">
+                        </div>
+                      </div>
+                    </div>
+                    {{/if}}-->
+
+                    {{#if (equal rule.type 'hardware')}}
+                         {{>_RuleHardwareForm name="rule" model=rule parentContext=rulesContext}}
+                    {{/if}}
+
+                    {{#if (equal rule.type 'userControl')}}
+                    <div class="row">
+                      <div class="col-md-11">
+                             <div class="input-group">
+                               <span class="input-group-addon" title="Control" >{{_ "Control"}}</span>
+                                 <select id="ruleControl{{rule.index}}" class="form-control" required value="{{rule.control}}">
+                                   {{#each control in controls}}
+                                        <option value="{{control._id}}">{{control.name}}</option>
+                                   {{/each}}
+                                 </select>
+                                 <span class="input-group-addon">{{_ "CONDITION"}}</span>
+                                   <select id="ruleOperator{{rule.index}}"  class="form-control" required value="{{rule.condition}}">
+                                     {{#each condition in controlConditions}}
+                                       <option value="{{condition.value}}"> {{condition.name}} </option>
+                                    {{/each}}
+                                   </select>
+                                 <span class="input-group-addon" style="width:0px; padding-left:0px; padding-right:0px; border:none;"></span>
+                                 <input  id="ruleValue{{rule.index}}"  type="text" class="form-control remove-z-index" placeholder="{{_ 'INSERT_VALUE'}}" value="0">
+                            </div>
+                        </div>
+                      </div>
+                    {{/if}}
+
+                    {{#if (equal rule.type 'rule')}}
+                    <div class="row">
+                      <div class="col-md-11">
+                        <select id="nestedRule{{rule.index}}" class="form-control" data-index="{{rule.index}}" value="{{rule.nestedRule}}">
+                          {{#each nestedRule in nestedRules}}
+                           <option value="{{nestedRule._id}}">{{nestedRule.name}}</option>
+                          {{/each}}
+                        </select>
+                      </div>
+                     </div>
+
+                    {{/if}}
+
+              {{/each}}
+                <p>  </p>
+              <button type="submit" class="btn btn-default js-add-rule">
+                {{_ 'ADD_RULE'}}
+              </button>
+              <button type="submit" class="btn btn-danger js-remove-rule">
+                {{_ 'REMOVE_RULE'}}
+              </button>
+
+              <h2>{{_ "ACTION"}}</h2>
+              {{#each action in actions}}
+                <div class="row">
+                    <div class="col-md-5">
+                      <select id="actionType{{action.index}}" class="form-control js-action-type" data-index="{{action.index}}" value="{{action.type}} ">
+                        <option value="">Action Type </option>
+                        <option value="hardware">Hardware</option>
+                        <option value="userControl">User Control</option>
+                        <option value="timer">Timer</option>
+                      </select>
+                   </div>
+                   {{#if (equal action.type 'hardware')}}
+                         {{>_RuleHardwareForm name="action" model=action}}
+                   {{/if}}
+                   {{#if (equal action.type 'timer')}}
+
+                   {{/if}}
+
+               </div>
+            {{/each}}
+            <p>  </p>
+            <button type="submit" class="btn btn-default js-add-action">
+              {{_ 'ADD_ACTION'}}
+            </button>
+            <button type="submit" class="btn btn-danger js-remove-action">
+              {{_ 'REMOVE_ACTION'}}
+            </button>
+            <br><br>
+
+            <button type="submit" class="btn btn-default js-save-rule">
+              {{_ 'SAVE_RULE'}}
+            </button>
+
+
+
+            </form>
+
+
+
+
+          </div>
+</div>
+
+
+
+</template>

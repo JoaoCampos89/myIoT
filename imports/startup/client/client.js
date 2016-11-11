@@ -1,7 +1,9 @@
-//import '../../client/components';
-//import '../../client/admin';
-//import '../../client/accounts';
-//import '../../api/accounts';
+import '../../client/components';
+//import '../../client/formComponents/index.js';
+import '../../client/admin';
+
+import '../../client/accounts';
+import '../../api/accounts';
 //import '/imports/api/game/index.js';
 import '../../client/landing';
 //import '../../client/game';

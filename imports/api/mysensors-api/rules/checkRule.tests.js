@@ -1,12 +1,12 @@
 /* eslint-env mocha */
-import rulesCache from './rulesCache.js';
+
 import _ from 'underscore';
 import Rule from '../../rule';
 import {Sensor} from '../../mysensors-hardware';
 import { assert } from 'meteor/practicalmeteor:chai';
 import checkRule from './checkRule.js';
 import {Meteor} from 'meteor/meteor';
-
+import rulesCache from './rulesCache.js';
 //import {checkAllRules} from '../index.js';
 //import Rule from '../../../rule';
 //import {Sensor} from '../../../mysensors-hardware';

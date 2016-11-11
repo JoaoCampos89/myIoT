@@ -1,5 +1,5 @@
 import './index.html';
-
+import '../../../../components';
 import {Template} from 'meteor/templating';
 //import {createTargetGroup} from '/imports/api/targetGroup/validated-methods.js';
 import {FlowRouter} from 'meteor/kadira:flow-router';
@@ -15,6 +15,7 @@ Template[templateName].onCreated(function(){
 
   const instance = this;
   instance.errors = new ReactiveVar({});
+  instance.type = new ReactiveVar("Serial");
 });
 
 Template[templateName].helpers({
@@ -25,7 +26,35 @@ Template[templateName].helpers({
   selected: function(value, field){
    return value === field ? 'selected' : null;
   //  return 'selected';
-  }
+},
+equalType: function(value, value2, value3){
+  return Template.instance().type.get() === value || Template.instance().type.get() === value2 || Template.instance().type.get() === value3;
+},
+selectedType: function(){
+  return Template.instance().type;
+},
+optionsType: function(){
+  return [
+        {
+          value: 'Serial',
+          name: 'Serial'
+        },
+       {
+        value: 'Ethernet',
+        name: 'Ethernet'
+       },
+        {
+          value: 'WebSocket',
+          name: 'WebSocket'
+        },
+        {
+          value: 'Mqtt',
+          name: 'Mqtt'
+        }
+    ];
+
+}
+
 
 });
 
@@ -40,10 +69,13 @@ Template[templateName].events({
     gateway.port = instance.$("#port").val() ? instance.$("#port").val(): null;
     gateway.baud = instance.$("#baud").val() ? instance.$("#baud").val(): null;
     gateway.type = instance.$("#type").val() ? instance.$("#type").val(): null;
+    gateway.user = instance.$("#user").val() ? instance.$("#user").val(): null;
+    gateway.password = instance.$("#password").val() ? instance.$("#password").val(): null;
+    gateway.server = instance.$("#server").val() ? instance.$("#server").val(): null;
+    gateway.id = instance.$("#id").val() ? instance.$("#id").val(): null;
     instance.errors.set({});
-    console.log(gateway);
+
     data.validatedMethod.call(gateway, function(error, result){
-      console.log(error);
 
       if(error){
         if (ValidationError.is(error)) {
@@ -65,6 +97,10 @@ Template[templateName].events({
         FlowRouter.go(data.route)
       }
     });
+  },
+  'change #type': function(event, instance){
+        instance.type.set(instance.$("#type").val());
+
   }
 
 });

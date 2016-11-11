@@ -1,6 +1,6 @@
 import './select2.html';
 import 'select2';
-import Template from 'meteor/templating';
+import {Template} from 'meteor/templating';
 
 var templateName = 'select2Component';
 
