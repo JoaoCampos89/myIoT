@@ -1,12 +1,31 @@
 <template name="adminUserSensorPage">
   <div class="page-header">
-    <h3>{{_ 'VIEW_USER_SENSOR'}} <small><button type="button" class="btn btn-success btn-circle btn-xl js-add-user-sensor text-center"> + </button></small></h3>
+    <h3>{{_ 'USER_SENSOR_MANAGEMENT'}} <small><button type="button" class="btn btn-success btn-circle btn-xl js-add-user-sensor text-center"> + </button></small></h3>
   </div>
-  {{#each sensor in sensors}}
+  {{#each control in controls}}
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title" style="display:inline;"> {{_ "TYPE"}}: {{control.control}}</h3>
 
+        <button type="button" class="btn btn-primary js-edit-user-sensor" data-id={{control._id}}>
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="btn btn-danger js-remove-control" data-id={{control._id}}>
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="panel-body">
+        <dl class="dl-horizontal">
+          <dt>Control Id</dt>
+          <dd>{{control.controlId}}</dd>
+        </dl>
+      </div>
+    </div>
+    </div>
 
   {{else}}
-    <h1>You not have buttons and sliders controls </h1>
+    <h1>{{_ "YOU_NOT_HAVE_BUTTONS_AND_SLIDERS_CONTROLS"}}</h1>
   {{/each}}
 
 </template>

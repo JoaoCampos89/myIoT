@@ -19,5 +19,21 @@
   "GAME_INDEX": "Game Page",
   "GAME_TYPE": "Game Type",
   "PLAYERS" : "Players",
-  "required": "__field__ is required"
+  "required": "__field__ is required",
+  "ADD_ACTION": "Add Action",
+  "REMOVE_ACTION": "Remove Action",
+  "ADD_RULE": "Add Rule",
+  "REMOVE_RULE": "Remove Rule",
+  "CREATE_RULE": "Create Rule",
+  "RULE_NAME": "Rule Name",
+  "INSERT_RULE_NAME": "Insert Rule Name",
+  "SAVE_RULE": "Save Rule",
+  "USER_SENSOR_MANAGEMENT": "User Sensor Management",
+  "NODE_MANAGEMENT": "Node Management",
+  "TIMER_MANAGEMENT": "Timer Management",
+  "TRIGGERED_RULES": "Triggered Rules",
+  "REQUEST_HEARTBEAT": "Request Heartbeat",
+  "YOU_NOT_HAVE_RULES": "You not have rules",
+  "RULES_MANAGEMENT": "Rules Management",
+  "USER_SENSOR": "User Sensor"
 }

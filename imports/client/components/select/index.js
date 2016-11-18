@@ -19,7 +19,9 @@ Template[templateName].helpers({
 
 Template[templateName].events({
   'change select': function(event, instance){
+    if(instance.data.selected){
       instance.data.selected.set(instance.$('select').val());
+    }
   }
 });
 

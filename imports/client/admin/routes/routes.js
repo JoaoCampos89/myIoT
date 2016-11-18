@@ -58,9 +58,6 @@ adminRoutes.route('/', {
     });
   },
   title: "Dashboard",
-  triggersEnter: [function(context, redirect) {
-    console.log('running /admin trigger');
-  }]
 });
 
 adminRoutes.layoutPage = layoutPage;
@@ -71,8 +68,8 @@ adminRoutes.sideBarPage = sideBarPage;
 adminRoutes.routesArray = [{
     path: "",
     name: "dashboard",
-    title: "Dashboard"
-
+    title: "Dashboard",
+    symbol: "fa fa-tachometer"
   }];
 
 // array of all routes

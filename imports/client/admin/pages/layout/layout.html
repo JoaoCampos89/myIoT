@@ -1,7 +1,66 @@
 <template name="adminLayoutPage">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+     </button>
+      <a class="navbar-brand" href="#">IOMAKER System</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="http://placehold.it/20x20"
+               alt="Alternate Text" class="img-circle"/>  {{currentUser.username}}
+                                       <b class="caret"></b></a>
+                                       <ul class="dropdown-menu" style="min-width: 300px;">
+                                           <li>
+                                                 <div class="row  text-center">
+                                                     <div class="col-md-12" >
+                                                         <img src="http://placehold.it/120x120"
+                                                             alt="Alternate Text" class="img-responsive" style="display: inline-block;margin:auto;"/>
+                                                         <p class="text-center small">
+                                                             <a href="#">Change Photo</a></p>
+                                                     </div>
+                                                     <div class="col-md-12">
+                                                         <span>{{currentUser.username}}</span>
+                                                         <p class="text-muted small">
+                                                             {{currentUser.email}}</p>
+                                                         <div class="divider">
+                                                         </div>
+                                                         <a href="#" class="btn btn-primary btn-sm active">View Profile</a>
+                                                     </div>
+                                                 </div>
+
+                                                   <div class="row text-center" style="padding-top:10px;">
+                                                       <div class="col-md-6">
+                                                           <a href="#" class="btn btn-default btn-sm">Change Passowrd</a>
+                                                       </div>
+                                                       <div class="col-md-6">
+                                                           <a href="#" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-log-out"></span> {{_ "LOGOUT"}}</a>
+                                                       </div>
+                                                   </div>
+
+                                           </li>
+                                       </ul>
+                </li>
+      <!--    {{#if currentUser}}
+            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> {{_ "LOGOUT"}}</a></li>
+          {{else}}
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> {{_ "LOGIN"}}</a></li>
+          {{/if}}
+        -->
+        </ul>
+      </div>
+  </div>
+</nav>
+
+    <!--
   <div style="padding-top:50px;background-color:black;">
 
-  </div>
+  </div>-->
     <!-- {{#if currentUser}}  -->
   <!--{{#if isInRole 'super-admin, admin' 'admin'}} -->
      <div class="container-fluid">

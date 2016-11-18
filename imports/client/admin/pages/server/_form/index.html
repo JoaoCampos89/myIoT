@@ -1,0 +1,31 @@
+<template name="adminServerCreateEditForm">
+
+      <div class="well well-sm">
+          <form >
+            <input type="hidden" class="form-control" value={{gateway.id}} id="id">
+            <!--
+            <div class="form-group {{#if error 'type'}}has-error{{/if}}">
+                <select id="type">
+                  <option value="Serial" {{selected 'Serial' gateway.type}}>Serial</option>
+                  <option value="Ethernet" {{selected 'Ethernet' gateway.type}}>Ethernet</option>
+                </select>
+                <p> {{#if error 'type'}}{{error 'type'}}{{/if}}</p>
+            </div>
+          -->
+          {{> formGroupComponent type='text' id='name' field='name' error= (error 'name') placeholder="Timer Name" value=model.name label="Name"}}
+
+          {{> formGroupComponent type='select' id='timer' field='timer' error= (error 'type') options=optionsTimer selected=selectedTimer value=model.timer label="Timer"}}
+
+          {{> formGroupComponent type='select' id='type' field='type' error= (error 'type') options=optionsType selected=selectedType value=model.type label="Type"}}
+
+
+            <button type="submit" class="btn btn-default">
+              {{#if model}} Editar Timer{{else}}  Criar Timer{{/if}}
+            </button>
+
+      </form>
+</div>
+
+
+
+</template>

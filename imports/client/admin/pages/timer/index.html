@@ -1,36 +1,39 @@
 <template name="adminTimerPage">
   <div class="page-header">
-    <h1>Gestão das Gateways <small><button type="button" class="btn btn-success btn-circle btn-xl js-add-gateway text-center"> + </button></small></h1>
+    <h1>{{_ "TIMER_MANAGEMENT"}} <small><button type="button" class="btn btn-success btn-circle btn-xl js-add-timer text-center"> + </button></small></h1>
   </div>
   <div class="container">
 
 
-{{#each gateway in gateways}}
-  <div class="col-md-4">
+{{#each timer in timers}}
+<div class="col-md-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title" style="display:inline;"> Timer: {{timer.name}}  </h3>
+      <button type="button" class="btn btn-primary js-edit-timer" data-id={{timer._id}}>
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="btn btn-danger js-remove-timer" data-id={{timer._id}}>
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="panel-body">
+      <dl class="dl-horizontal">
+        <dt>Timer Type:</dt>
+        <dd>{{timer.type}}</dd>
+        <dt>Delay:</dt>
+        <dd>{{timer.delay}} ms</dd>
+        <dt>Time:</dt>
+        <dd>{{timer.time}} ms</dd>
+      </dl>
+    </div>
+  </div>
+  </div>
 
 
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title" style="display:inline;"> Gateway: {{gateway.id}}</h3>
-        <button type="button" class="btn btn-primary js-edit-gateway" data-id={{gateway._id}}>
-          <i class="fa fa-pencil" aria-hidden="true"></i>
-        </button>
-        <button type="button" class="btn btn-danger js-edit-gateway" data-id={{gateway._id}}>
-          <i class="fa fa-trash" aria-hidden="true"></i>
-        </button>
-      </div>
-      <div class="panel-body">
-        <button type="button" class="btn btn-default js-initialize-gateway" data-id={{gateway._id}}>
-          Inicializar gateway
-        </button>
-        <button type="button" class="btn btn-default js-start-gateway" data-id={{gateway._id}}>
-          Start gateway
-        </button>
-        <p>Estado Gateway:{{#if gateway.status}} ready{{else}} not ready {{/if}}</p>
-        <p>Inicializado:{{#if gateway.initialized}} Inicializado{{else}} Não inicializado {{/if}}</p>
-      </div>
-    </div>
-    </div>
+
+  {{else}}
+  <h1>{{_ "YOU_HAVE_NO_TIMERS"}}</h1>
 {{/each}}
   </div>
 

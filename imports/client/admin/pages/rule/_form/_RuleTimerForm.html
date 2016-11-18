@@ -1,0 +1,29 @@
+<template name="_RuleTimerForm">
+  <div class="row">
+    <div class="col-md-11">
+            <div class="col-md-2 text-center " style="padding-top:10px;">
+             <h4><b>{{_ "TRIGGER_TIMER"}}</b></h4>
+            </div>
+             <div class="col-md-2">
+               {{>formGroupComponent type='select' id=(compoundName name 'Timer'  model.index)
+                       options=timers value=model.timer class='js-select-timer' label='Timer'}}
+             </div>
+
+
+             <!--
+             <span class="input-group-addon" title="Timer" >{{_ "Timer"}}</span>
+              {{>selectComponent id=(compoundName name 'Timer'  model.index) options=timers value=model.timer class='js-select-timer'}}
+
+               <span class="input-group-addon">{{_ "CONDITION"}}</span>
+
+              {{>selectComponent id=(compoundName name 'Condition'  model.index) options=timerConditions value=model.condition class='js-select-condition'}}
+
+
+
+               <span class="input-group-addon" style="width:0px; padding-left:0px; padding-right:0px; border:none;"></span>
+               <input  id="{{name}}Value{{model.index}}"  type="text" class="form-control remove-z-index" placeholder="{{_ 'INSERT_VALUE'}}" value="0">
+             -->
+
+      </div>
+    </div>
+</template>

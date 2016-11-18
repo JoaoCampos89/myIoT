@@ -37,7 +37,7 @@ adminRoutes.route('/'+ routeName+'/criar-'+ routeName, {
       page: "admin"+s.classify(routeName)+"CreatePage"
     });
   },
-  parent: "dashboard." + routeName,
+  parent: "admin"+s.classify(routeName)+"Page",
   title: "Criar "+ s.titleize(s.humanize(routeName))
 });
 
@@ -50,6 +50,6 @@ adminRoutes.route('/'+ routeName+'/editar-'+ routeName+'/:id', {
       page: "admin"+s.classify(routeName)+"EditPage"
     });
   },
-  parent: "dashboard." + routeName,
+  parent: "admin"+s.classify(routeName)+"Page",
   title: "Editar "+ s.titleize(s.humanize(routeName))
 });

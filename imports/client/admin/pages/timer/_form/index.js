@@ -23,29 +23,30 @@ Template[templateName].helpers({
     const instance = Template.instance();
     return instance.errors.get()[field] ? instance.errors.get()[field] : null;
   },
-  selected: function(value, field){
-   return value === field ? 'selected' : null;
-  //  return 'selected';
-},
-equalType: function(value,value2){
-  console.log(value2);
-  return Template.instance().type.get() === value;
-},
-selectedType: function(){
-  return Template.instance().type;
-},
-optionsType: function(){
-  return [{
-    value: 'Serial',
-    name: 'Serial'
-  },{
-    value: 'Ethernet',
-    name: 'Ethernet'
-  }
-    ];
-
-}
-
+  selectedType: function(){
+    return Template.instance().type;
+  },
+  optionsTimer: function(){
+    return [{
+      value: 'interval',
+      name: 'Interval'
+        },{
+      value: 'timeout',
+      name: 'Timeout'
+        }
+      ];
+    },
+  optionsType: function(){
+      return [{
+        value: 'trigger',
+        name: 'Trigger'
+      },
+      {
+        value: 'scheduled',
+        name: 'Scheduled'
+          }
+        ];
+      }
 
 });
 
@@ -55,18 +56,18 @@ Template[templateName].events({
     event.preventDefault();
     const data = instance.data;
   //  console.log(data);
-    const gateway = {};
-    gateway.name = instance.$("#name").val() ? instance.$("#name").val(): null;
-    gateway.port = instance.$("#port").val() ? instance.$("#port").val(): null;
-    gateway.baud = instance.$("#baud").val() ? instance.$("#baud").val(): null;
-    gateway.type = instance.$("#type").val() ? instance.$("#type").val(): null;
-    gateway.user = instance.$("#user").val() ? instance.$("#user").val(): null;
-    gateway.password = instance.$("#password").val() ? instance.$("#password").val(): null;
-    gateway.server = instance.$("#server").val() ? instance.$("#server").val(): null;
-    gateway.id = instance.$("#id").val() ? instance.$("#id").val(): null;
+    const model = {};
+    model.name = instance.$("#name").val() ? instance.$("#name").val(): null;
+    model.type = instance.$("#type").val() ? instance.$("#type").val(): null;
+    model.timer = instance.$("#timer").val() ? instance.$("#timer").val(): null;
+    model._id = instance.$("#_id").val() ? instance.$("#_id").val(): null;
+    model.time = instance.$("#time").val() ? instance.$("#time").val(): null;
+    model.delay = instance.$("#delay").val() ? instance.$("#delay").val(): null;
+    model.time = Number(model.time);
+    model.delay = Number(model.delay);
     instance.errors.set({});
 
-    data.validatedMethod.call(gateway, function(error, result){
+    data.validatedMethod.call(model, function(error, result){
 
       if(error){
         if (ValidationError.is(error)) {

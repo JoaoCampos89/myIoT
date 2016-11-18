@@ -1,8 +1,8 @@
 import './index.html';
 
 import {Template} from 'meteor/templating';
-import {createGateway} from '/imports/api/mysensors-hardware/validated-methods';
-import Gateway from '/imports/api/mysensors-hardware/gateway-db';
+import {createTimer} from '/imports/api/timer/validated-methods';
+import Timer from '/imports/api/timer';
 import {FlowRouter} from 'meteor/kadira:flow-router';
 
 const templateName = 'adminTimerEditPage';
@@ -18,14 +18,14 @@ Template[templateName].helpers({
 
 Template[templateName].helpers({
   validatedMethod: function(){
-    return createGateway;
+    return createTimer;
   },
   route:function(){
     return 'adminTimerPage';
   },
-  gateway: function(){
+  model: function(){
   //  console.log(Gateway.findOne({_id:FlowRouter.getParam("id")}));
-    return Gateway.findOne({_id:FlowRouter.getParam("id")});
+    return Timer.findOne({_id:FlowRouter.getParam("id")});
   }
 });
 

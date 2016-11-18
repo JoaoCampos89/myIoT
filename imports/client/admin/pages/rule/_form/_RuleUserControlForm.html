@@ -1,0 +1,22 @@
+<template name="_RuleUserControlForm">
+  <div class="row">
+    <div class="col-md-11">
+          <div class="col-md-2">
+            {{>formGroupComponent type='select' id=(compoundName name 'Control'  model.index)
+                    options=controls value=model.control class='js-select-control' label='CONTROL'}}
+          </div>
+
+          <div class="col-md-2">
+            {{>formGroupComponent type='select' id=(compoundName name 'Condition'  model.index)
+                    options=controlConditions value=model.condition class='js-select-condition' label='CONDITION'}}
+          </div>
+
+         {{# unless (equal control "U_BUTTON") }}
+           <div class="col-md-2">
+             {{>formGroupComponent type='text' id=(compoundName name 'Value'  model.index)
+                      value=model.value  label='Value' placeholder='INSERT_VALUE'}}
+           </div>
+         {{/unless}}
+      </div>
+    </div>
+</template>

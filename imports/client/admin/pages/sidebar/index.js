@@ -12,11 +12,22 @@ Template.adminSideBarPage.helpers({
   routes: function() {
 
     var routes = _.map(adminRoutes.routesArray, function(route) {
-      return {
-        path: "/admin/" + route.path,
-        name: route.name,
-        title: route.title
-      };
+      if(route.name === "dashboard"){
+        return {
+          path: "/admin",
+          name: route.name,
+          title: route.title,
+          symbol: route.symbol
+        };
+      }
+        else{
+          return {
+            path: "/admin/" + route.path,
+            name: route.name,
+            title: route.title,
+            symbol: route.symbol
+          };
+        }
     });
 
     return routes;

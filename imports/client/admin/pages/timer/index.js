@@ -5,8 +5,9 @@ import './edit';
 import './create';
 
 import {Template} from 'meteor/templating';
-import Gateway from '/imports/api/mysensors-hardware/gateway-db';
+import Timer from '/imports/api/timer';
 import {FlowRouter} from 'meteor/kadira:flow-router';
+import {Modal} from 'meteor/peppelg:bootstrap-3-modal';
 //import {setupGateway, activateSystem} from '/imports/api/mysensors-hardware/validated-methods';
 const templateName = 'adminTimerPage';
 
@@ -15,28 +16,34 @@ Template[templateName].onCreated(function(){
 });
 
 Template[templateName].helpers({
-  gateways: function(){
-    return Gateway.find({});
+  timers: function(){
+    return Timer.find({});
   }
 })
 
 
 Template[templateName].events({
-  "click .js-add-gateway": function(){
-        FlowRouter.go("adminGatewayCreatePage");
+  "click .js-add-timer": function(){
+        FlowRouter.go("adminTimerCreatePage");
   },
-  "click .js-edit-gateway": function(event){
+  "click .js-edit-timer": function(event){
         const id = event.currentTarget.dataset.id;
-        FlowRouter.go("adminGatewayEditPage",{id: id});
+        FlowRouter.go("adminTimerEditPage",{id: id});
   },
-  "click .js-initialize-gateway": function(event){
-        const id = event.currentTarget.dataset.id;
-    //    setupGateway.call({gatewayId: id});
-  },
-  "click .js-start-gateway": function(event){
-        const id = event.currentTarget.dataset.id;
-    //    activateSystem.call({gatewayId: id});
-  },
+  "click .js-remove-timer": function(event){
+    const modalContext = {};
+    const model = {};
+    const _id =  event.currentTarget.dataset.id;
+    const timer = Timer.findOne({_id:_id});
+    model.prefix = 'Timer';
+    model.name = timer.name;
+    model._id = _id;
+    modalContext.model = model;
+
+    //modalContext.validatedMethod = removeSensorGroup;
+    modalContext.route = "adminTimerPage";
+    Modal.show("removeModalComponent", modalContext);
+  }
 });
 
 Template[templateName].onRendered(function(){

@@ -1,10 +1,18 @@
 <template name="adminSideBarPage">
+<nav class="navbar navbar-default">
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mySidebar">
+     <span class="icon-bar"></span>
+     <span class="icon-bar"></span>
+     <span class="icon-bar"></span>
+   </button>
 
-
-
-  <ul class="nav nav-pills nav-stacked">
-      {{#each route in routes}}
-          <li role="presentation" class="{{isActivePath path=route.path}}"><a href="{{pathFor route.path}}">{{route.title}}</a></li>
-      {{/each}}
-  </ul>
+  <div class="collapse navbar-collapse" id="mySidebar">
+    <ul class="nav nav-pills nav-stacked">
+        {{#each route in routes}}
+            <li role="presentation" class="{{isActivePath path=route.path}}">
+              <a href="{{pathFor route.path}}">{{#if route.symbol}}<i class="{{route.symbol}}" aria-hidden="true"></i>{{/if}} {{route.title}}</a></li>
+        {{/each}}
+    </ul>
+  </div>
+</nav>
 </template>

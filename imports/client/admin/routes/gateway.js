@@ -1,6 +1,7 @@
 import adminRoutes from './routes.js';
 import {BlazeLayout} from 'meteor/kadira:blaze-layout';
-
+import s from 'underscore.string';
+const routeName = "gateway";
 
 adminRoutes.routesArray.push({
  path: "gateway",
@@ -34,8 +35,9 @@ adminRoutes.route('/gateway/criar-gateway', {
       page: 'adminGatewayCreatePage'
     });
   },
-  parent: "dashboard.gateway",
-  title: "Criar Gateway"
+  title: "Criar Gateway",
+  parent: "adminGatewayPage"
+
 });
 
 adminRoutes.route('/gateway/editar-gateway/:id', {
@@ -47,6 +49,6 @@ adminRoutes.route('/gateway/editar-gateway/:id', {
       page: 'adminGatewayEditPage'
     });
   },
-  parent: "dashboard.gateway",
+  parent:  "adminGatewayPage",
   title: "Editar Gateway"
 });

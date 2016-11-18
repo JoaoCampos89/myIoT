@@ -1,0 +1,42 @@
+<template name="adminSimulatorCreateEditForm">
+
+      <div class="well well-sm">
+          <form >
+            <input type="hidden" class="form-control" value={{gateway.id}} id="id">
+
+          {{> formGroupComponent type='select' field='type' error= (error 'type') options=optionsType selected=selectedType value=gateway.type}}
+
+
+          {{> formGroupComponent type='text' field='name' error= (error 'name') label="Name" placeholder="Insira o nome da gateway" value=gateway.name }}
+
+          {{> formGroupComponent type='text' field='port' error= (error 'port') label="Port" placeholder="Insira a Porta" value=gateway.port }}
+
+
+          {{#if (equalType 'Serial')}}
+
+            {{> formGroupComponent type='select' field='baud' label="Baud" error= (error 'type') options=optionsBaud selected=selectedBaud}}
+
+          {{/if}}
+
+          {{#if equalType 'WebSocket' 'Mqtt'}}
+
+              {{> formGroupComponent type='text' field='user' error= (error 'user') label="User" placeholder="Insira o User" value=gateway.user }}
+
+              {{> formGroupComponent type='text' field='password' error= (error 'password') label="Password" placeholder="Insira a Password" value=gateway.password }}
+
+          {{/if}}
+
+          {{#if equalType "Mqtt"}}
+                {{> formGroupComponent type='text' field='server' error= (error 'server') label="Server" placeholder="Insira o Server" value=gateway.server }}
+          {{/if}}
+
+            <button type="submit" class="btn btn-default">
+              {{#if gateway}} Editar Simulator{{else}}  Criar Simulator{{/if}}
+            </button>
+
+      </form>
+</div>
+
+
+
+</template>

@@ -1,13 +1,14 @@
 <template name="adminRulePage">
   <div class="page-header">
-    <h1>Gestão das Rules <small><button type="button" class="btn btn-success btn-circle btn-xl js-add-rule text-center"> + </button></small></h1>
+    <h1>{{_ "RULES_MANAGEMENT"}} <small><button type="button" class="btn btn-success btn-circle btn-xl js-add-rule text-center"> + </button></small></h1>
   </div>
   <div class="container">
 
 
     {{#each rule in rules}}
+      <h1>{{rule.name}}</h1>
     {{else}}
-    <h1>You not have rules.</h1>
+      <h1>{{_ "YOU_NOT_HAVE_RULES"}}.</h1>
     {{/each}}
   </div>
 

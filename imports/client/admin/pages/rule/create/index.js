@@ -1,7 +1,7 @@
 import './index.html';
 
 import {Template} from 'meteor/templating';
-import {createGateway} from '/imports/api/mysensors-hardware/validated-methods';
+import {createRule} from '/imports/api/rule/validated-methods';
 //import {FlowRouter} from 'meteor/kadira:flow-router';
 
 const templateName = 'adminRuleCreatePage';
@@ -12,7 +12,7 @@ Template[templateName].onCreated(function(){
 
 Template[templateName].helpers({
   validatedMethod: function(){
-    return createGateway;
+    return createRule;
   },
   route:function(){
     return 'adminRulePage';

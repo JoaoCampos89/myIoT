@@ -15,8 +15,8 @@ Template[templateName].onCreated(function(){
 });
 
 Template[templateName].helpers({
-      sensors: function(){
-          return  Sensor.find({}).fetch();
+      controls: function(){
+          return  Sensor.find({type:"user-control"});
       }
 })
 
@@ -24,6 +24,10 @@ Template[templateName].helpers({
 Template[templateName].events({
   "click .js-add-user-sensor": function(){
         FlowRouter.go("adminUserSensorCreatePage");
+  },
+  "click .js-edit-user-sensor": function(event){
+        const id = event.currentTarget.dataset.id;
+        FlowRouter.go("adminUserSensorEditPage",{id: id});
   },
 });
 

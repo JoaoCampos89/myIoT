@@ -15,7 +15,7 @@ Template[templateName].onCreated(function(){
 
   const instance = this;
   instance.errors = new ReactiveVar({});
-  instance.type = new ReactiveVar("Serial");
+  instance.control = new ReactiveVar({});
 });
 
 Template[templateName].helpers({
@@ -27,20 +27,30 @@ Template[templateName].helpers({
    return value === field ? 'selected' : null;
   //  return 'selected';
 },
-equalType: function(value,value2){
-  return Template.instance().type.get() === value;
-},
-selectedType: function(){
+
+selectedControl: function(){
   return Template.instance().type;
 },
 optionsType: function(){
   return [{
-    value: 'button',
-    name: 'Button'
-  },{
-    value: 'range',
-    name: 'Range'
-  }
+            value: 'U_BUTTON',
+            name: 'Button'
+          },{
+            value: 'U_SLIDER',
+            name: 'Slider'
+          },
+          {
+            value: 'U_TEXT',
+            name: 'Text'
+          },
+          {
+            value: 'U_SELECT',
+            name: 'Select'
+          },
+          {
+            value: 'U_RADIO',
+            name: 'Radio'
+          }
     ];
 
 }
@@ -54,18 +64,12 @@ Template[templateName].events({
     event.preventDefault();
     const data = instance.data;
   //  console.log(data);
-    const gateway = {};
-    gateway.name = instance.$("#name").val() ? instance.$("#name").val(): null;
-    gateway.port = instance.$("#port").val() ? instance.$("#port").val(): null;
-    gateway.baud = instance.$("#baud").val() ? instance.$("#baud").val(): null;
-    gateway.type = instance.$("#type").val() ? instance.$("#type").val(): null;
-    gateway.user = instance.$("#user").val() ? instance.$("#user").val(): null;
-    gateway.password = instance.$("#password").val() ? instance.$("#password").val(): null;
-    gateway.server = instance.$("#server").val() ? instance.$("#server").val(): null;
-    gateway.id = instance.$("#id").val() ? instance.$("#id").val(): null;
+    const model = {};
+    model.control = instance.$("#control").val() ? instance.$("#control").val(): null;
+    model.controlId = instance.$("#controlId").val() ? instance.$("#controlId").val(): null;
     instance.errors.set({});
 
-    data.validatedMethod.call(gateway, function(error, result){
+    data.validatedMethod.call(model, function(error, result){
 
       if(error){
         if (ValidationError.is(error)) {
@@ -88,8 +92,8 @@ Template[templateName].events({
       }
     });
   },
-  'change #type': function(event, instance){
-        instance.type.set(instance.$("#type").val());
+  'change #control': function(event, instance){
+        instance.type.set(instance.$("#control").val());
 
   }
 

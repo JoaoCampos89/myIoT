@@ -1,5 +1,7 @@
 import './index.html';
 import './_RuleHardwareForm.js';
+import './_RuleUserControlForm.js';
+import './_RuleTimerForm.js';
 import '../../../../components';
 import {Template} from 'meteor/templating';
 //import {createTargetGroup} from '/imports/api/targetGroup/validated-methods.js';
@@ -8,7 +10,7 @@ import {ReactiveVar} from 'meteor/reactive-var';
 import {ValidationError} from 'meteor/mdg:validation-error';
 import _ from 'underscore';
 import {TAPi18n} from 'meteor/tap:i18n';
-
+import {Rule} from 'meteor/tap:i18n';
 const templateName = 'adminRuleCreateEditForm';
 
 Template[templateName].onCreated(function(){
@@ -21,6 +23,11 @@ Template[templateName].onCreated(function(){
     instance.rules.set(rules);
     const actions = [{index:0}];
     instance.actions.set(actions);
+    if(instance.data.context){
+      instance.rules.set(instance.data.context.rules);
+      instance.actions.set(instance.data.context.actions);
+    }
+
 });
 
 Template[templateName].helpers({
@@ -52,21 +59,28 @@ Template[templateName].events({
         rules[rule.index].type = instance.$('#ruleType'+rule.index).val();
         switch (rule.type) {
           case 'hardware':
-            rules[rule.index].gateway = instance.$('#ruleGateway'+rule.index).val();
-            rules[rule.index].sensor = instance.$('#ruleSensor'+rule.index).val();
-            rules[rule.index].subType = instance.$('#ruleSubType'+rule.index).val();
+            rules[rule.index].gatewayId = instance.$('#ruleGateway'+rule.index).val();
+            rules[rule.index].nodeId = instance.$('#ruleNode'+rule.index).val();
+            rules[rule.index].sensorId = instance.$('#ruleSensor'+rule.index).val();
+            rules[rule.index].subTypeId = instance.$('#ruleSubType'+rule.index).val();
             rules[rule.index].condition = instance.$('#ruleCondition'+rule.index).val();
             rules[rule.index].conector = instance.$('#conector'+rule.index).val() ? instance.$('#conector'+rule.index).val(): null;
             rules[rule.index].value = instance.$('#ruleValue'+rule.index).val();
             break;
           case 'userControl':
-            rules[rule.index].control = instance.$('#ruleControl'+rule.index).val();
+            rules[rule.index].controlId = instance.$('#ruleControl'+rule.index).val();
             rules[rule.index].condition = instance.$('#ruleCondition'+rule.index).val();
             rules[rule.index].conector = instance.$('#conector'+rule.index).val() ? instance.$('#conector'+rule.index).val(): null;
             rules[rule.index].value = instance.$('#ruleValue'+rule.index).val();
             break;
           case 'rule':
               rules[rule.index].nestedRuleId = instance.$('#nestedRule'+rule.index).val();
+            break;
+          case 'timer':
+              rules[rule.index].timer = instance.$('#ruleTimer'+rule.index).val();
+              rules[rule.index].condition = instance.$('#ruleCondition'+rule.index).val();
+              rules[rule.index].conector = instance.$('#conector'+rule.index).val() ? instance.$('#conector'+rule.index).val(): null;
+              rules[rule.index].value = instance.$('#ruleValue'+rule.index).val();
             break;
           default:
 
@@ -109,26 +123,27 @@ Template[templateName].events({
           actions[action.index].type = instance.$('#actionType'+action.index).val();
           switch (action.type) {
             case 'hardware':
-              action[action.index].gateway = instance.$('#actionGateway'+action.index).val();
-              actions[action.index].sensor = instance.$('#actionSensor'+action.index).val();
-              actions[action.index].subType = instance.$('#actionSubType'+action.index).val();
+              actions[action.index].gatewayId = instance.$('#actionGateway'+action.index).val();
+              actions[action.index].nodeId = instance.$('#actionNode'+action.index).val();
+              actions[action.index].sensorId = instance.$('#actionSensor'+action.index).val();
+              actions[action.index].subTypeId = instance.$('#actionSubType'+action.index).val();
               actions[action.index].condition = instance.$('#actionCondition'+action.index).val();
-              actions[action.index].conector = instance.$('#conector'+action.index).val() ? instance.$('#conector'+action.index).val(): null;
               actions[action.index].value = instance.$('#actionValue'+action.index).val();
               break;
             case 'userControl':
               actions[action.index].control = instance.$('#actionControl'+action.index).val();
               actions[action.index].condition = instance.$('#actionCondition'+action.index).val();
-              actions[action.index].conector = instance.$('#conector'+action.index).val() ? instance.$('#conector'+action.index).val(): null;
               actions[action.index].value = instance.$('#actionValue'+action.index).val();
               break;
-
+            case 'timer':
+              actions[action.index].timer = instance.$('#actionTimer'+action.index).val();
+              actions[action.index].condition = instance.$('#actionCondition'+action.index).val();
+              actions[action.index].value = instance.$('#ruleValue'+action.index).val();
+            break;
             default:
 
           }
-          actions[action.index].actuator = instance.$('#actuator'+action.index).val();
-          actions[action.index].operator = instance.$('#actuatorOperator'+action.index).val();
-          actions[action.index].value = instance.$('#actionValue'+action.index).val();
+
       });
       const lastAction = _.last(actions);
       if(lastAction){
@@ -157,7 +172,7 @@ Template[templateName].events({
       const saveRule = {};
       saveRule.actions = actions;
       saveRule.rules = rules;
-      saveRule.ruleName = instance.$('#ruleName').val();
+      saveRule.name = instance.$('#ruleName').val();
       data.validatedMethod.call(saveRule, function(error, result){
 
         if(error){
@@ -165,6 +180,7 @@ Template[templateName].events({
             error.details.forEach(function(fieldError) {
               const errors = instance.errors.get();
               errors[fieldError.name] = TAPi18n.__(fieldError.type,{field: fieldError.name});
+              console.log(errors);
               instance.errors.set(errors);
 
           });

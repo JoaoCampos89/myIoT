@@ -1,35 +1,52 @@
 <template name="_RuleHardwareForm">
-  <div class="row" style="padding-top:20px;">
+  <div class="row" style="padding-top:5px;">
     <div class="col-md-11">
-       <div class="input-group">
-         <span class="input-group-addon" title="Gateway" >{{_ "GATEWAY"}}</span>
-            {{>selectComponent id=(compoundName name 'Gateway'  model.index) options=gateways value=model.gatewayId class='js-select-gateway'}}
-
-          <span class="input-group-addon" title="Node" >{{_ "NODE"}}</span>
-             {{>selectComponent id=(compoundName name 'Node'  model.index) options=nodes value=model.nodeId class='js-select-node'}}
-
-           <span class="input-group-addon" title="Sensor" >{{_ "SENSOR"}}</span>
-
-             {{>selectComponent id=(compoundName name 'Sensor'  model.index)  options=sensors value=model.sensorId class='js-select-sensor'}}
-
-           <span class="input-group-addon" title="SubType" >{{_ "SUBTYPE"}}</span>
-
-            {{>selectComponent id=(compoundName name 'SubType'  model.index) options=subTypes value=model.subType class='js-select-subType'}}
-
-              {{#if (equal name "rule")}}
-                 <span class="input-group-addon">{{_ "CONDITION"}}</span>
-                   <select id="{{name}}Operator{{model.index}}"  class="form-control" required value="{{model.condition}}">
-                     {{#each condition in conditions}}
-                       <option value="{{condition.value}}"> {{condition.name}} </option>
-                    {{/each}}
-                   </select>
-              {{else}}
-                <span class="input-group-addon">=</span>
-             {{/if}}
-
-           <span class="input-group-addon" style="width:0px; padding-left:0px; padding-right:0px; border:none;"></span>
-           <input  id="{{name}}Value{{model.index}}"  type="text" class="form-control remove-z-index" placeholder="{{_ 'INSERT_VALUE'}}" value="0">
+      <div class="col-md-2">
+        {{>formGroupComponent type='select' id=(compoundName name 'Gateway'  model.index)
+                options=gateways value=model.gatewayId class='js-select-gateway' label='GATEWAY'}}
       </div>
+      <div class="col-md-2">
+        {{>formGroupComponent type='select' id=(compoundName name 'Node'  model.index)
+                options=nodes value=model.nodeId class='js-select-node' label='NODE'}}
+      </div>
+      <div class="col-md-2">
+        {{>formGroupComponent type='select' id=(compoundName name 'Sensor'  model.index)
+                options=sensors value=model.sensorId class='js-select-sensor' label='SENSOR'}}
+      </div>
+
+      <div class="col-md-2">
+        {{>formGroupComponent type='select' id=(compoundName name 'SubType'  model.index)
+                options=subTypes value=model.subType class='js-select-subType' label='SUBTYPE'}}
+      </div>
+
+      {{#if (equal name "rule")}}
+          <div class="col-md-2">
+            {{>formGroupComponent type='select' id=(compoundName name 'Condition'  model.index)
+                    options=conditions value=model.condition class='js-select-condition' label='CONDITION'}}
+          </div>
+      {{/if}}
+      {{#if (equal name "action")}}
+        <div class="col-md-1 text-center">
+          <h3><b>=</b></h3>
+        </div>
+      {{/if}}
+
+      {{#if (equal name "command")}}
+
+      <div class="col-md-2">
+        {{>formGroupComponent type='select' id=(compoundName name 'COMMAND'  model.index)
+                options=commands value=model.command class='js-select-command' label='COMMAND'}}
+      </div>
+      {{/if}}
+
+      <div class="col-md-2">
+        {{>formGroupComponent type='text' id=(compoundName name 'Value'  model.index)
+                 value=model.value  label='Value' placeholder='INSERT_VALUE'}}
+      </div>
+
+
+
+
     </div>
   </div>
 </template>

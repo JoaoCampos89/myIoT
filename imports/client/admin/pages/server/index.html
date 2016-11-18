@@ -1,0 +1,14 @@
+<template name="adminServerPage">
+  <div class="page-header">
+    <h1>{{_ "SERVER_MANAGEMENT"}} <small><button type="button" class="btn btn-success btn-circle btn-xl js-add-server text-center"> + </button></small></h1>
+  </div>
+  <div class="container">
+
+
+{{#each server in servers}}
+  {{else}}
+  <h1>{{_ "YOU_HAVE_NO_SERVERS"}}</h1>
+{{/each}}
+  </div>
+
+</template>

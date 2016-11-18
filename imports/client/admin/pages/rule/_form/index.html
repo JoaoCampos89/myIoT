@@ -11,7 +11,7 @@
                 <div class="col-md-5">
                   <div class="form-group">
                      <label for="ruleName">{{_ "RULE_NAME"}}</label>
-                     <input type="text" class="form-control" id="ruleName" placeholder="{{_ 'INSERT_RULE_NAME'}}" required value="rule">
+                     <input type="text" class="form-control" id="ruleName" placeholder="{{_ 'INSERT_RULE_NAME'}}" required value="{{context.name}}">
                    </div>
                 </div>
               </div>
@@ -25,14 +25,14 @@
                {{/each}}
               <h2>{{_ "RULE"}}</h2>
                <!-- rules input group -->
-              {{#each rule in rules}}
+              {{#each rule in rules }}
 
                    {{#if moreThanOneRule rule.index}}
                     <div class="row">
                       <div class="col-md-11">
                         <select  name="conector{{rule.index}}" class="form-control" value="{{rule.conector}}">
-                            <option value="1">ou</option>
-                            <option value="2">e</option>
+                            <option value="and">ou</option>
+                            <option value="or">e</option>
                         </select>
                       </div>
                      </div>
@@ -48,75 +48,19 @@
                        </select>
                      </div>
                     </div>
-                    <!--   rule type used for hardware
-                    {{#if (equal rule.type 'hardware')}}
-                    <div class="row" style="padding-top:10px;">
-                      <div class="col-md-11">
-                         <div class="input-group">
-                           <span class="input-group-addon" title="Gateway" >{{_ "GATEWAY"}}</span>
-                             <select id="ruleGateway{{rule.index}}" class="form-control" required value="{{rule.gateway}}">
-                               {{#each gateway in gateways}}
-                                    <option value="{{gateway._id}}">{{gateway.name}}</option>
-                               {{/each}}
-                             </select>
-                            <span class="input-group-addon" title="Node" >{{_ "NODE"}}</span>
-                             <select id="ruleNode{{rule.index}}" class="form-control" required value="{{rule.node}}">
-                                 {{#each node in nodes}}
-                                      <option value="{{node.id}}">{{node.id}}</option>
-                                 {{/each}}
-                             </select>
-                             <span class="input-group-addon" title="Sensor" >{{_ "SENSOR"}}</span>
-                               <select id="ruleSensor{{rule.index}}" class="form-control" required value="{{rule.sensor}}">
-                                 {{#each sensor in sensors}}
-                                      <option value="{{sensor._id}}">{{sensor.name}}</option>
-                                 {{/each}}
-                               </select>
 
-
-                             <span class="input-group-addon" title="SubType" >{{_ "SUBTYPE"}}</span>
-                               <select id="ruleSubType{{rule.index}}" class="form-control" required value="{{rule.subType}}">
-                                  {{#each subType in subTypes}}
-                                       <option value="{{subType.value}}">{{subType.name}}</option>
-                                  {{/each}}
-                               </select>
-                             <span class="input-group-addon">{{_ "CONDITION"}}</span>
-                               <select id="ruleOperator{{rule.index}}"  class="form-control" required value="{{rule.condition}}">
-                                 {{#each condition in conditions}}
-                                   <option value="{{condition.value}}"> {{condition.name}} </option>
-                                {{/each}}
-                               </select>
-                             <span class="input-group-addon" style="width:0px; padding-left:0px; padding-right:0px; border:none;"></span>
-                             <input  id="ruleValue{{rule.index}}"  type="text" class="form-control remove-z-index" placeholder="{{_ 'INSERT_VALUE'}}" value="0">
-                        </div>
-                      </div>
-                    </div>
-                    {{/if}}-->
 
                     {{#if (equal rule.type 'hardware')}}
-                         {{>_RuleHardwareForm name="rule" model=rule parentContext=rulesContext}}
+                         {{> _RuleHardwareForm name="rule" model=rule parentContext=rulesContext}}
                     {{/if}}
 
                     {{#if (equal rule.type 'userControl')}}
-                    <div class="row">
-                      <div class="col-md-11">
-                             <div class="input-group">
-                               <span class="input-group-addon" title="Control" >{{_ "Control"}}</span>
-                                 <select id="ruleControl{{rule.index}}" class="form-control" required value="{{rule.control}}">
-                                   {{#each control in controls}}
-                                        <option value="{{control._id}}">{{control.name}}</option>
-                                   {{/each}}
-                                 </select>
-                                 <span class="input-group-addon">{{_ "CONDITION"}}</span>
-                                   <select id="ruleOperator{{rule.index}}"  class="form-control" required value="{{rule.condition}}">
-                                     {{#each condition in controlConditions}}
-                                       <option value="{{condition.value}}"> {{condition.name}} </option>
-                                    {{/each}}
-                                   </select>
-                                 <span class="input-group-addon" style="width:0px; padding-left:0px; padding-right:0px; border:none;"></span>
-                                 <input  id="ruleValue{{rule.index}}"  type="text" class="form-control remove-z-index" placeholder="{{_ 'INSERT_VALUE'}}" value="0">
-                            </div>
-                        </div>
-                      </div>
+                         {{> _RuleUserControlForm name="rule" model=rule parentContext=rulesContext}}
+
+                    {{/if}}
+
+                    {{#if (equal rule.type 'timer')}}
+                         {{> _RuleTimerForm name="rule" model=rule parentContext=rulesContext}}
                     {{/if}}
 
                     {{#if (equal rule.type 'rule')}}
@@ -153,10 +97,14 @@
                       </select>
                    </div>
                    {{#if (equal action.type 'hardware')}}
-                         {{>_RuleHardwareForm name="action" model=action}}
+                         {{> _RuleHardwareForm name="action" model=action parentContext=actionsContext}}
+                   {{/if}}
+
+                   {{#if (equal action.type 'userControl')}}
+                         {{> _RuleUserControlForm name="action" model=action parentContext=actionsContext}}
                    {{/if}}
                    {{#if (equal action.type 'timer')}}
-
+                         {{> _RuleTimerForm name="action" model=action parentContext=actionsContext}}
                    {{/if}}
 
                </div>

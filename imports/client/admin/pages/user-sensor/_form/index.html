@@ -2,10 +2,10 @@
 
       <div class="well well-sm">
           <form >
-            
-            {{> formGroupComponent type='select' id="type" field='type' error=(error 'type') label="Type  " options=optionsType selected=selectedType value="range"}}
 
-            {{> formGroupComponent type='text' id="controlId" field='controlId' error=(error 'controlId') label="Control Id" value="range"}}
+            {{> formGroupComponent type='select' id="control" field='control' error=(error 'control') label="Type  " options=optionsType selected=selectedControl value=model.control}}
+
+            {{> formGroupComponent type='text' id="controlId" field='controlId' error=(error 'controlId') label="Control Id" value=model.controlId}}
 
             <button type="submit" class="btn btn-default">
               {{#if model}} Editar User Control{{else}}  Criar User Control{{/if}}
