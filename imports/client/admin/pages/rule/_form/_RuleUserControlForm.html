@@ -5,17 +5,33 @@
             {{>formGroupComponent type='select' id=(compoundName name 'Control'  model.index)
                     options=controls value=model.control class='js-select-control' label='CONTROL'}}
           </div>
-
+        {{#if (equal name 'rule')}}
           <div class="col-md-2">
             {{>formGroupComponent type='select' id=(compoundName name 'Condition'  model.index)
                     options=controlConditions value=model.condition class='js-select-condition' label='CONDITION'}}
           </div>
+          {{/if}}
+
+        {{#if (equal name 'action')}}
+          <div class="col-md-1 text-center">
+            <h3><b>=</b></h3>
+          </div>
+        {{/if}}
+
+
 
          {{# unless (equal control "U_BUTTON") }}
-           <div class="col-md-2">
-             {{>formGroupComponent type='text' id=(compoundName name 'Value'  model.index)
-                      value=model.value  label='Value' placeholder='INSERT_VALUE'}}
-           </div>
+               <div class="col-md-2">
+                 {{>formGroupComponent type='select' id=(compoundName name 'ValueType'  model.index)
+                         options=valueTypes value=model.valueType class='js-select-valueType' label='ValueTypes'}}
+               </div>
+
+               {{#if (equal model.valueType "userDefined")}}
+                 <div class="col-md-2">
+                   {{>formGroupComponent type='text' id=(compoundName name 'Value'  model.index)
+                            value=model.value  label='Value' placeholder='INSERT_VALUE' class='js-change-value'}}
+                 </div>
+               {{/if}}
          {{/unless}}
       </div>
     </div>

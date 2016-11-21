@@ -275,8 +275,8 @@ protocol['ACTIONS']['HARDWARE'] = ['hardware'];
 protocol['ACTIONS']['TIMER'] = ['setInterval', 'setTimeout', 'clearTimer'];
 protocol['ACTIONS']['USERCONTROL'] = ['userControl'];
 protocol['ACTIONS']['TIMER']['interval'] = ['setInterval', 'clearTimer'];
-protocol['ACTIONS']['TIMER']['timeout'] = ['setTimeout', 'clearTimer'];
-protocol['ACTIONS']['TIMER']['trigger'] = ['clearTimer'];
+protocol['ACTIONS']['TIMER']['scheduled'] = [ 'stopTimer', 'clearTimer', 'initTimer'];
+protocol['ACTIONS']['TIMER']['trigger'] = ['trigger','clearTimer'];
 
 
 export default protocol;

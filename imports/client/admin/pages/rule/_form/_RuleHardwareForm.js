@@ -48,6 +48,13 @@ Template[templateName].helpers({
   conditions: function(){
 
     return protocol['CONDITIONS']['HARDWARE'].map(function(condition) {return {value:condition, name:condition }});
+  },
+  valueTypes: function(){
+    const userControls = Sensor.find({type:'user-control', control:{$in:['U_TEXT', 'U_RANGE', 'U_SELECT', 'U_CHECKBOX']}}).fetch()
+            .map(function(control){return {value:control._id, name: control.controlId}});
+    userControls.push({name:"User Defined", value: 'userDefined'});
+
+    return userControls;
   }
 });
 
@@ -80,8 +87,21 @@ Template[templateName].events({
         const context = instance.data.parentContext.get();
         context[index].subTypeId = instance.$('.js-select-subType').val();
         instance.data.parentContext.set(context);
+  },
+  "click .js-select-valueType": function(event, instance){
+    // changes parent context
+        const index = instance.data.model.index;
+        const context = instance.data.parentContext.get();
+        context[index].valueType = instance.$('.js-select-valueType').val();
+        instance.data.parentContext.set(context);
+  },
+  "change .js-change-value": function(event, instance){
+    // changes parent context
+        const index = instance.data.model.index;
+        const context = instance.data.parentContext.get();
+        context[index].value = instance.$('.js-change-value').val();
+        instance.data.parentContext.set(context);
   }
-
 
 
 })

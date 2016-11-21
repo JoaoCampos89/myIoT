@@ -1,14 +1,23 @@
 <template name="_RuleTimerForm">
   <div class="row">
     <div class="col-md-11">
-            <div class="col-md-2 text-center " style="padding-top:10px;">
-             <h4><b>{{_ "TRIGGER_TIMER"}}</b></h4>
-            </div>
+            {{#if (equal name 'rule')}}
+              <div class="col-md-2 text-center " style="padding-top:10px;">
+               <h4><b>{{_ "TRIGGER_TIMER"}}</b></h4>
+              </div>
+            {{/if}}
+
              <div class="col-md-2">
                {{>formGroupComponent type='select' id=(compoundName name 'Timer'  model.index)
                        options=timers value=model.timer class='js-select-timer' label='Timer'}}
              </div>
 
+             {{#if (equal name 'action')}}
+                   <div class="col-md-2">
+                     {{>formGroupComponent type='select' id=(compoundName name 'action'  model.index)
+                             options=timerActions value=model.timerAction class='js-select-timer-actions' label='Actions'}}
+                   </div>
+             {{/if}}
 
              <!--
              <span class="input-group-addon" title="Timer" >{{_ "Timer"}}</span>

@@ -27,13 +27,19 @@ Template[templateName].helpers({
     return value===value2;
   },
   timers: function(){
-    return Timer.find({}).map(function(timer){return {value:timer._id, name:timer.name}});
-  },
-  timerConditions:function(){
     const instance = Template.instance();
-    const timer = Timer.findOne(instance.timer.get()).timer;
+      if (instance.data.name === 'rule') {
+        return Timer.find().map(function(timer){return {value:timer._id, name:timer.name}});
+      } else {
+        return Timer.find({type:'trigger'}).map(function(timer){return {value:timer._id, name:timer.name}});
+      }
+  },
+  timerActions:function(){
+    const instance = Template.instance();
+    const timer = Timer.findOne(instance.timer.get()).type;
     return protocol['ACTIONS']['TIMER'][timer].map(function(element){return {value:element, name:element} });
   },
+
 
 });
 
@@ -44,6 +50,14 @@ Template[templateName].events({
         const context = instance.data.parentContext.get();
         context[index].timer = instance.$('.js-select-timer').val();
         instance.timer.set(context[index].timer);
+        instance.data.parentContext.set(context);
+  },
+  "click .js-select-timer-actions": function(event, instance){
+    // changes parent context
+        const index = instance.data.model.index;
+        const context = instance.data.parentContext.get();
+        context[index].action = instance.$('.js-select-timer-actions').val();
+        //instance.timer.set(context[index].timer);
         instance.data.parentContext.set(context);
   }
 

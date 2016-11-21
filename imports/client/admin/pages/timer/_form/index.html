@@ -4,15 +4,23 @@
           <form >
             <input type="hidden" id="_id" value="{{model._id}}">
 
-          {{> formGroupComponent type='text' id='name' field='name' error= (error 'name') placeholder="Timer Name" value=model.name label="Name"}}
+          {{> formGroupComponent type='text' id='name'  error=(error 'name') placeholder="Timer Name" value=model.name label="Name"}}
 
-          {{> formGroupComponent type='select' id='timer' field='timer' error= (error 'timer') options=optionsTimer selected=selectedTimer value=model.timer label="Timer"}}
+          {{> formGroupComponent type='select' id='timer' error=(error 'timer') options=optionsTimer selected=selectedTimer value=model.timer label="Timer"}}
 
-          {{> formGroupComponent type='select' id='type' field='type' error= (error 'type') options=optionsType selected=selectedType value=model.type label="Type"}}
+          {{> formGroupComponent type='select' id='type'  error=(error 'type') options=optionsType selected=selectedType value=model.type label="Type"}}
 
-          {{> formGroupComponent type='text' id='delay' field='delay' error= (error 'delay') placeholder="Delay Time of Timer in ms" value=model.delay label="Delay Timer by Time (ms)"}}
+          {{#if equal selectedType 'scheduled'}}
+            {{> formGroupComponent type='datetime-local' id='timeInit'  error=(error 'timeInit') placeholder="Time init" value=model.timeInit label="Time init"}}
 
-          {{> formGroupComponent type='text' id='time' field='time' error= (error 'time') placeholder="Time in ms" value=model.time label="Time (ms)"}}
+            {{> formGroupComponent type='datetime-local' id='timeFinal' error=(error 'timeInit') placeholder="Time init" value=model.timeFinal label="Time Final"}}
+          {{/if}}
+
+          {{#if equal selectedTimer 'interval'}}
+            {{> formGroupComponent type='text' id='duration'  error=(error 'duration') placeholder="Duration of Timer" value=model.duration label="Duration Time (ms)"}}
+          {{/if}}
+
+          {{> formGroupComponent type='text' id='time' field='time' error=(error 'time') placeholder="Time in ms" value=model.time label="Time (ms)"}}
 
             <button type="submit" class="btn btn-default">
               {{#if model}} Editar Timer{{else}}  Criar Timer{{/if}}

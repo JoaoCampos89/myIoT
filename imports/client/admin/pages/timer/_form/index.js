@@ -8,6 +8,7 @@ import {ValidationError} from 'meteor/mdg:validation-error';
 import _ from 'underscore';
 import {TAPi18n} from 'meteor/tap:i18n';
 
+
 const templateName = 'adminTimerCreateEditForm';
 
 
@@ -15,7 +16,15 @@ Template[templateName].onCreated(function(){
 
   const instance = this;
   instance.errors = new ReactiveVar({});
-  instance.type = new ReactiveVar("Serial");
+  instance.selectedType = new ReactiveVar();
+
+  instance.selectedTimer = new ReactiveVar();
+//  console.log(instance.data);
+  instance.data.model.timer ? instance.selectedTimer.set(instance.data.model.timer):null;
+  instance.data.model.type ? instance.selectedType.set(instance.data.model.type):null;
+  if(instance.data.duration){
+    instance.selectedTimer.set(instance.data.duration);
+  }
 });
 
 Template[templateName].helpers({
@@ -24,7 +33,14 @@ Template[templateName].helpers({
     return instance.errors.get()[field] ? instance.errors.get()[field] : null;
   },
   selectedType: function(){
-    return Template.instance().type;
+    return Template.instance().selectedType;
+  },
+  selectedTimer: function(){
+    return Template.instance().selectedTimer;
+  },
+  equal: function(reactiveVar, value2){
+    //console.log(value1);
+    return reactiveVar.get() === value2;
   },
   optionsTimer: function(){
     return [{
@@ -62,9 +78,12 @@ Template[templateName].events({
     model.timer = instance.$("#timer").val() ? instance.$("#timer").val(): null;
     model._id = instance.$("#_id").val() ? instance.$("#_id").val(): null;
     model.time = instance.$("#time").val() ? instance.$("#time").val(): null;
-    model.delay = instance.$("#delay").val() ? instance.$("#delay").val(): null;
+    instance.$("#timeInit").val() ? model.timeInit = new Date(instance.$("#timeInit").val()): null;
+    instance.$("#timeFinal").val() ? model.timeFinal = new Date(instance.$("#timeFinal").val()): null;
+    instance.$("#duration").val() ? model.duration = Number(instance.$("#duration").val()): null;
     model.time = Number(model.time);
-    model.delay = Number(model.delay);
+    //model.delay = Number(model.delay);
+    console.log(model);
     instance.errors.set({});
 
     data.validatedMethod.call(model, function(error, result){

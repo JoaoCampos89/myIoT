@@ -16,22 +16,16 @@ import {transformRules} from './transformData.js';
 
 
 export default  new ValidatedMethod({
-  name: 'rule.create-rule',
+  name: 'rule.simulate-rule',
   validate: new SimpleSchema({
-        _id: {type:String, optional:true},
-        name: {type: String},
-        rules: {type: [Object], blackbox:true},
-        actions: {type: [Object], blackbox:true},
-
+        simulation: {type: [Object], blackbox:true},
     }).validator(),
-  run({_id,rules, actions, name}) {
+  run({simulation}) {
 
     if(this.userId){
-      if(_id){
-        return  Rule.update({_id:_id},{ $set: {name:name, rules:rules, actions:actions, updatedBy:this.userId, updatedAt: new Date()}});
-      }else{
-        return Rule.insert({name:name, rules:rules, actions:actions, createdBy:this.userId, createdAt: new Date()});
-      }
+        if(simulation.length === 1){
+              
+        }
 
     }
       else {

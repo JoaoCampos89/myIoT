@@ -1,13 +1,21 @@
 <template name="formGroupComponent">
   <div class="form-group {{#if error}}has-error{{/if}}">
-      <label for="{{id}}">{{label}}</label>
+      <label for="{{id}}">{{_ label}}</label>
        {{#if (equal type 'text')}}
-          <input type="text" class="form-control {{class}}" value="{{value}}" id="{{id}}" placeholder="{{placeholder}}">
+          <input type="text" class="form-control {{class}}" value="{{value}}" id="{{id}}" placeholder="{{_ placeholder}}">
         {{/if}}
 
         {{#if (equal type 'number')}}
            <input type="number" class="form-control {{class}}" value="{{value}}" id="{{id}}" >
          {{/if}}
+
+         {{#if (equal type 'date')}}
+            <input type="date" class="form-control {{class}}" value="{{processDate value}}" id="{{id}}" >
+          {{/if}}
+
+          {{#if (equal type 'datetime-local')}}
+             <input type="datetime-local" class="form-control {{class}}" value="{{processDateTime value}}" id="{{id}}" >
+           {{/if}}
 
         {{#if (equal type 'select')}}
            {{>selectComponent options=options selected=selected value=value id=id class=class}}

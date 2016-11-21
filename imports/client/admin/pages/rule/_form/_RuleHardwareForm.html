@@ -40,10 +40,16 @@
       {{/if}}
 
       <div class="col-md-2">
-        {{>formGroupComponent type='text' id=(compoundName name 'Value'  model.index)
-                 value=model.value  label='Value' placeholder='INSERT_VALUE'}}
+        {{>formGroupComponent type='select' id=(compoundName name 'ValueType'  model.index)
+                options=valueTypes value=model.valueType class='js-select-valueType' label='ValueTypes'}}
       </div>
 
+      {{#if (equal model.valueType "userDefined")}}
+        <div class="col-md-2">
+          {{>formGroupComponent type='text' id=(compoundName name 'Value'  model.index) class='js-change-value'
+                   value=model.value  label='Value' placeholder='INSERT_VALUE'}}
+        </div>
+      {{/if}}
 
 
 

@@ -35,5 +35,9 @@
   "REQUEST_HEARTBEAT": "Request Heartbeat",
   "YOU_NOT_HAVE_RULES": "You not have rules",
   "RULES_MANAGEMENT": "Rules Management",
-  "USER_SENSOR": "User Sensor"
+  "USER_SENSOR": "User Sensor",
+  "INSERT_VALUE": "Insert Value",
+  "GATEWAY": "Gateway",
+  "SENSOR": "Sensor",
+  "CONDITION": "Condition"
 }

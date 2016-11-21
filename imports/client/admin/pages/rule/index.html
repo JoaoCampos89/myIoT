@@ -6,7 +6,33 @@
 
 
     {{#each rule in rules}}
-      <h1>{{rule.name}}</h1>
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">  {{rule.name}}</h3>
+
+          <button type="button" class="btn btn-primary js-edit-rule" data-id={{rule._id}}>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="btn btn-danger js-remove-rule" data-id={{rule._id}}>
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="panel-body">
+          <h5>Rules</h5>
+            {{#each r in rule.rules}}
+                {{r.type}}
+            {{/each}}
+            <h5>Actions</h5>
+              {{#each action in rule.actions}}
+                  {{action.type}}
+              {{/each}}
+        </div>
+        <div class="panel-footer">
+
+        </div>
+      </div>
+    </div>
     {{else}}
       <h1>{{_ "YOU_NOT_HAVE_RULES"}}.</h1>
     {{/each}}

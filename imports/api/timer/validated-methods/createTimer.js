@@ -17,20 +17,32 @@ export default  new ValidatedMethod({
     _id: {type:String, optional:true},
     name:{type:String},
     timer:{type:String, allowedValues:["interval", "timeout"]},
-    type:{type:String},
+    type:{type:String, allowedValues:["trigger", "scheduled"]},
     time:{type:Number},
-    delay:{type:Number},
+    duration:{type:Number},
+    timeInit: {type: Date, optional:true},
+    timeFinal: {type: Date, optional:true},
     //playerId: {type: String}
-  //  status:{type:Boolean}
+    //  status:{type:Boolean}
   }).validator(),
-  run({ name, timer, type, _id, time, delay}) {
+  //run({ name, timer, type, _id, time,  timeInit, timeFinal})
+  run(data) {
 
+      //console.log(data);
     if(this.userId){
 
-      if(_id){
-        return Timer.update({_id:_id},{$set: {name:name, timer: timer, type: type, time:time, delay:delay, updatedBy: this.userId, updatedAt: new Date()}});
+      if(data._id){
+      //  return Timer.update({_id:_id},{$set: {name:name, timer: timer, type: type, time:time,
+        //  updatedBy: this.userId, timeInit:timeInit, timeFinal:timeFinal, updatedAt: new Date()}});
+              data.updatedBy = this.userId;
+              data.updatedAt = new Date();
+              return Timer.update({_id: data._id}, data);
       }else{
-        return Timer.insert({name:name, timer:timer, type: type, time:time, delay:delay, createdBy: this.userId, createdAt: new Date()});
+        //return Timer.insert({name: name, timer: timer, type: type, time: time,
+        //   timeInit: timeInit, timeFinal: timeFinal, createdBy: this.userId, createdAt: new Date()});
+          data.createdBy = this.userId;
+          data.createdAt = new Date();
+        return Timer.insert(data)
       }
 
     }

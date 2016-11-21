@@ -8,6 +8,7 @@ import {Template} from 'meteor/templating';
 import Timer from '/imports/api/timer';
 import {FlowRouter} from 'meteor/kadira:flow-router';
 import {Modal} from 'meteor/peppelg:bootstrap-3-modal';
+import moment from 'moment';
 //import {setupGateway, activateSystem} from '/imports/api/mysensors-hardware/validated-methods';
 const templateName = 'adminTimerPage';
 
@@ -18,6 +19,10 @@ Template[templateName].onCreated(function(){
 Template[templateName].helpers({
   timers: function(){
     return Timer.find({});
+  },
+  prettyDate: function(value){
+    //moment.locale('pt-br');
+    return moment(value).format('LLL')
   }
 })
 

@@ -12,7 +12,8 @@ import rulesCache from './rulesCache.js';
 
 export default function (sensorId, type){
   // find all rules related to this;
-  const rules = Rule.find({"conectors.conditions.sensorId": sensorId, "conectors.conditions.sensorSubType": type}).fetch();
+const rules = Rule.find({"conectors.conditions.sensorId": sensorId, "conectors.conditions.sensorSubType": type}).fetch();
+//  const rules = Rule.find(_id:{$in:rules}).fetch();
   //iterate each rule in database
   _.each(rules, function(rule){
             // recursive check rules

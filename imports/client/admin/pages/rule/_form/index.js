@@ -10,7 +10,7 @@ import {ReactiveVar} from 'meteor/reactive-var';
 import {ValidationError} from 'meteor/mdg:validation-error';
 import _ from 'underscore';
 import {TAPi18n} from 'meteor/tap:i18n';
-import {Rule} from 'meteor/tap:i18n';
+//import {Rule} from '/imports/api';
 const templateName = 'adminRuleCreateEditForm';
 
 Template[templateName].onCreated(function(){
@@ -23,14 +23,33 @@ Template[templateName].onCreated(function(){
     instance.rules.set(rules);
     const actions = [{index:0}];
     instance.actions.set(actions);
-    if(instance.data.context){
-      instance.rules.set(instance.data.context.rules);
-      instance.actions.set(instance.data.context.actions);
+    console.log(instance.data.model);
+    if(instance.data.model){
+      instance.rules.set(instance.data.model.rules);
+      instance.actions.set(instance.data.model.actions);
     }
 
 });
 
 Template[templateName].helpers({
+  compoundName: function(first, last){
+    return first+last;
+  },
+  ruleOptions: function(){
+    return [
+            {name:'Hardware', value:'hardware'},
+            {name:'User Control', value:'userControl'},
+            {name:'Rule', value:'rule'},
+            {name:'Timer', value:'timer'}
+        ];
+  },
+  conectorOptions: function(){
+    return [
+            {name:'Ou', value:'or'},
+            {name:'E', value:'and'}
+        ];
+  },
+
   rules:function(){
     return Template.instance().rules.get();
   },
@@ -55,6 +74,7 @@ Template[templateName].events({
   "click .js-add-rule": function(event,instance){
      event.preventDefault();
       const rules = instance.rules.get();
+      console.log(rules);
       _.each(rules,function(rule){
         rules[rule.index].type = instance.$('#ruleType'+rule.index).val();
         switch (rule.type) {
@@ -65,13 +85,16 @@ Template[templateName].events({
             rules[rule.index].subTypeId = instance.$('#ruleSubType'+rule.index).val();
             rules[rule.index].condition = instance.$('#ruleCondition'+rule.index).val();
             rules[rule.index].conector = instance.$('#conector'+rule.index).val() ? instance.$('#conector'+rule.index).val(): null;
-            rules[rule.index].value = instance.$('#ruleValue'+rule.index).val();
+            rules[rule.index].valueType = instance.$('#ruleValueType'+rule.index).val();
+            rules[rule.index].valueType === "userDefined" ? rules[rule.index].value = instance.$('#ruleValue'+rule.index).val(): null;
+
             break;
           case 'userControl':
             rules[rule.index].controlId = instance.$('#ruleControl'+rule.index).val();
             rules[rule.index].condition = instance.$('#ruleCondition'+rule.index).val();
             rules[rule.index].conector = instance.$('#conector'+rule.index).val() ? instance.$('#conector'+rule.index).val(): null;
-            rules[rule.index].value = instance.$('#ruleValue'+rule.index).val();
+            rules[rule.index].valueType = instance.$('#ruleValueType'+rule.index).val();
+            rules[rule.index].valueType === "userDefined" ? rules[rule.index].value = instance.$('#ruleValue'+rule.index).val(): null;
             break;
           case 'rule':
               rules[rule.index].nestedRuleId = instance.$('#nestedRule'+rule.index).val();
@@ -108,6 +131,13 @@ Template[templateName].events({
       rules[index].type = instance.$('#ruleType'+index).val();
       instance.rules.set(rules);
   },
+  "click .js-select-conector": function(event, instance){
+      event.preventDefault();
+      const index = event.currentTarget.dataset.index;
+      const rules = instance.rules.get();
+      rules[index].conector = instance.$('#conector'+index).val();
+      instance.rules.set(rules);
+  },
   "click .js-action-type": function(event, instance){
       event.preventDefault();
       const index = event.currentTarget.dataset.index;
@@ -119,6 +149,7 @@ Template[templateName].events({
   "click .js-add-action": function(event, instance){
      event.preventDefault();
       const actions = instance.actions.get();
+      console.log(actions);
       _.each(actions,function(action){
           actions[action.index].type = instance.$('#actionType'+action.index).val();
           switch (action.type) {
@@ -138,7 +169,7 @@ Template[templateName].events({
             case 'timer':
               actions[action.index].timer = instance.$('#actionTimer'+action.index).val();
               actions[action.index].condition = instance.$('#actionCondition'+action.index).val();
-              actions[action.index].value = instance.$('#ruleValue'+action.index).val();
+              actions[action.index].value = instance.$('#actionValue'+action.index).val();
             break;
             default:
 

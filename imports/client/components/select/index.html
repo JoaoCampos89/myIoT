@@ -1,5 +1,6 @@
 <template name="selectComponent">
-  <select id="{{id}}" value="{{value}}" class="form-control {{class}}">
+  <select id="{{id}}" value="{{value}}" class="form-control {{class}}" data-index="{{data-index}}">
+      <option>{{_ "CHOOSE_OPTION"}}</option>
     {{#each option in options}}
       <option value="{{option.value}}" {{selectedField option.value value}}>{{option.name}}</option>
     {{/each}}

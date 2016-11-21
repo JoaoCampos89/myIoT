@@ -67,6 +67,8 @@ Template[templateName].events({
     const model = {};
     model.control = instance.$("#control").val() ? instance.$("#control").val(): null;
     model.controlId = instance.$("#controlId").val() ? instance.$("#controlId").val(): null;
+    FlowRouter.getParam("id") ? model._id = FlowRouter.getParam("id"): null;
+
     instance.errors.set({});
 
     data.validatedMethod.call(model, function(error, result){
